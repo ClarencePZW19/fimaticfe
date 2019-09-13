@@ -1,12 +1,6 @@
 import React, {Component} from 'react';
 import GameLanding from "./Pages/gamelanding";
 import LoginForm from "./Components/LoginForm";
-
-
-
-
-
-
 class Login extends Component{
 
     constructor(props) {

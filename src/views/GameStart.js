@@ -28,7 +28,7 @@ class GameStart extends Component {
                     value:1000.0,
                 },
                 insurance:{
-                    value:false,
+                    value:[],
                 }
             },
             episodeName:"Making my money work",
@@ -129,8 +129,10 @@ class GameStart extends Component {
     componentDidMount() {
         // import the index
         console.log(data);
+        let gameControl = this.props.location.state;
+        console.log(gameControl);
         this.setState({
-            
+
         })
     }
 
@@ -261,37 +263,6 @@ class GameStart extends Component {
                     </header>
                 </div>);
         }
-
-        // const gamelanding = (this.state.stage===1) && (
-        //     <GameLanding
-        //         nextStage = {this.nextStage}
-        //         handleChange = {this.handleChange}
-        //     />
-        // );
-        // const gamedescription = (this.state.stage===2) && (
-        //     <GameDescription></GameDescription>
-        // );
-        // const gameDecision = (this.state.stage===3) && (
-        //     <GameDecision></GameDecision>
-        // );
-        // const gamePostDecision = (this.state.stage ==4) && (
-        //     <GamePostDecision></GamePostDecision>
-        // );
-        // const gameSummary = (this.state.stage == 5) && (
-        //     <GameSummary></GameSummary>
-        // );
-
-
-        // return (
-        //
-
-
-        // )
-        // {gamelanding}
-        // {gamedescription}
-        // {gameDecision}
-        // {gamePostDecision}
-        // {gameSummary}
     }
 }
 
