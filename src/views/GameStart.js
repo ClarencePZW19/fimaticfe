@@ -131,6 +131,7 @@ class GameStart extends Component {
         console.log(data);
         let gameControl = this.props.location.state;
         console.log(gameControl);
+        //set the data
         this.setState({
 
         })
