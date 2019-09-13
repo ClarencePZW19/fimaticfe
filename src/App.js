@@ -6,6 +6,7 @@ import LoadingComponent from './common/LoadingComponent';
 
 const GameStart = lazy(() => import('./views/GameStart'));
 const Login = lazy(() => import('./views/Login'));
+const GameEnd = lazy(() => import('./views/GameEnd'));
 
 function LazyComponent(Component) {
     return props => (
@@ -21,6 +22,7 @@ class App extends Component {
             <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <Switch>
                     <Route path="/gamestart" component={LazyComponent(GameStart)}/>
+                    <Route path="/gameend" component={LazyComponent(GameEnd)}/>
                     <Route path="/login" component={LazyComponent(Login)}/>
                     <Route path="/" component={LazyComponent(GameStart)}/>
                 </Switch>

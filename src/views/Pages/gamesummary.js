@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import {Button} from "reactstrap";
 import Container from "reactstrap/es/Container";
 import Row from "reactstrap/es/Row";
-import Col from "reactstrap/es/Col";
-
 
 class GameSummary extends Component {
     render() {
@@ -29,36 +27,20 @@ class GameSummary extends Component {
 
                     </Row>
                     <Row>
-                        <Col xs="6"sm="6">
                         <Button size="lg" >Increase Bonds by 5%</Button>
-                        </Col>
-                        <Col xs="6"sm="6">
                         <Button size="lg">Decrease Bonds by 5%</Button>
-                        </Col>
                     </Row>
                     <Row>
-                        <Col xs="6"sm="6">
                         <Button size="lg">Increase Investments by 5%</Button>
-                        </Col>
-                        <Col xs="6"sm="6">
                         <Button size="lg">Decrease Investments by 5%</Button>
-                        </Col>
                     </Row>
                     <Row>
-                        <Col xs="6"sm="6">
                         <Button size="lg">Increase Savings by 5%</Button>
-                        </Col>
-                        <Col xs="6"sm="6">
                         <Button size="lg">Decrease Savings by 5%</Button>
-                        </Col>
                     </Row>
                     <Row>
-                        <Col xs="6"sm="6">
                         <Button size="lg">Buy Housing Insurance</Button>
-                        </Col>
-                        <Col xs="6"sm="6">
                         <Button size="lg">Buy xx Insurance</Button>
-                        </Col>
                     </Row>
                 </Container>
             </div>

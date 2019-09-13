@@ -1,0 +1,5 @@
+
+
+export const data = [{episodeName:'Making_my_money_work',pivotNum : 55,title : 'Electricity bill increase (Savings)',headlineStart : 'Electricity becomes more expensive',descriptionStart : 'You get a mail from the energy company informing you that due to increased prices and regulations, your ' +
+        'electricity bill has to be increased over the next few months.',scproductName : 'Spending',scproductEffect : 80,step
+        : 6,nextPivot : 4,product : [],effect : [],OutcomeProbability : 1,headlineOne : 'The end of the month',descriptionOne : 'Nothing particularly interesting happens except the bill showing your expenses for the month',ocproductOneName : 'NIL',ocEffectOne : 0,headlineTwo : '',descriptionTwo : '',ocproductTwoName : '',ocEffectTwo : 0,offering : '',lowMessage : '',highMessage : ''}];

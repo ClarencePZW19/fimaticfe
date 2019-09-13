@@ -4,17 +4,17 @@ import GameDescription from "./Pages/gamedescription";
 import GameSummary from "./Pages/gamesummary";
 import GamePostDecision from "./Pages/gamepostdecision";
 import GameDecision from "./Pages/gamedecision";
+import {data} from "./Data";
+
 
 class GameStart extends Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.state = {
-
             stage: 1,
             pivotNum: 1,
             step:1,
-
             earnings:3000,
             spendings:1800,
             gameControls:{
@@ -25,7 +25,7 @@ class GameStart extends Component {
                     value:3500.0,
                 },
                 savings:{
-                    value:3200.0,
+                    value:1000.0,
                 },
                 insurance:{
                     value:false,
@@ -46,12 +46,6 @@ class GameStart extends Component {
             product : ["stocks","stocks","bonds","bonds"],
             effect : [-0.20,-1,-0.2,-1],
 
-            optionOne: "Sell stock (-100%)",
-            optionTwo: "Sell stock (-50%)",
-            optionThree: "Buy stock (+50%)",
-            optionFour: "Buy stock (+100%)",
-            optionFive: "Do Nothing",
-
             //gamepostdecision
             outcomeProb: 0.8,
             headlineOne: "Recession worsens - FDI inflows just a speculation..",
@@ -71,7 +65,17 @@ class GameStart extends Component {
 
         }
     }
-
+    checkActionValid(){
+        let savings = this.state.gameControls.savings.value;
+        console.log(savings);
+        if(savings<=0){
+            console.log("hello")
+            return false;
+        }else{
+            return true;
+        }
+        //check isf savings reaches 0
+    }
     nextStage = () => {
         const {stage} = this.state;
         this.setState({
@@ -114,6 +118,22 @@ class GameStart extends Component {
         })
     };
 
+    postGameSummaryStage = () =>{
+        const{stage} = this.state;
+        //change stage number to 1
+
+
+        //reload state with new index
+
+    };
+    componentDidMount() {
+        // import the index
+        console.log(data);
+        this.setState({
+            
+        })
+    }
+
     handleChange = (e) => {
         console.log(e);
         var name;
@@ -146,6 +166,19 @@ class GameStart extends Component {
             tempvalue = updatedFormElement.value + updatedFormElement.value * (effect);
             savings = updatedFormElement.value - updatedFormElement.value * (effect);
         }
+        if(this.checkActionValid()){
+
+            updatedFormElement.value = tempvalue;
+            console.log(tempvalue);
+            updatedControls[name] = updatedFormElement;
+            updatedControls["savings"] = savings;
+            this.setState({
+                gameControls: updatedControls
+            });
+        }else{
+            this.props.history.push({pathname: "/gameend",
+                                state:this.state});
+        }
         updatedFormElement.value = tempvalue;
         console.log(tempvalue);
         updatedControls[name] = updatedFormElement;
@@ -156,7 +189,6 @@ class GameStart extends Component {
     }
 
     render() {
-
         const {stage} = this.state;
         const values = this.state.gameControls;
         console.log(stage);
