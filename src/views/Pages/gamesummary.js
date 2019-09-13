@@ -1,34 +1,66 @@
 import React, {Component} from 'react';
 import {Button} from "reactstrap";
-import Card from "reactstrap/es/Card";
-import CardHeader from "reactstrap/es/CardHeader";
-import CardBody from "reactstrap/es/CardBody";
-import CardText from "reactstrap/es/CardText";
-
+import Container from "reactstrap/es/Container";
+import Row from "reactstrap/es/Row";
+import Col from "reactstrap/es/Col";
 
 
 class GameSummary extends Component {
-    render(){
+    render() {
+
+        const {earnings, spendings} = this.props;
+
         return (
-            <div >
-                <Card>
-                    <CardHeader>
-                        <h2>End of month Summary</h2>
-                        <h3>Monthly Spending</h3>
-                        <h3>Monthly Earning</h3>
-                    </CardHeader>
-                    <CardBody>
-                        <Button>Increase Bonds</Button>
-                        <Button>Decrease Bonds</Button>
-                        <Button>Increase Investments</Button>
-                        <Button>Decrease Investments</Button>
-                        <Button>Increase Savings</Button>
-                        <Button>Decrease Savings</Button>
-                        <Button>Buy Housing Insurance</Button>
-                        <Button>Buy xx Insurance</Button>
-                    </CardBody>
-                    <Button> Proced </Button>
-                </Card>
+            <div>
+                <Container>
+                    <Row>
+                        <h3>End of month Summary</h3>
+                    </Row>
+                    <Row>
+                        <h6>Monthly Earnings</h6>
+                        <h6>{earnings}</h6>
+                    </Row>
+                    <Row>
+                        <h6>Monthly Spending : </h6>
+                        <h6>{spendings}</h6>
+                    </Row>
+
+                    <Row>
+
+                    </Row>
+                    <Row>
+                        <Col xs="6"sm="6">
+                        <Button size="lg" >Increase Bonds by 5%</Button>
+                        </Col>
+                        <Col xs="6"sm="6">
+                        <Button size="lg">Decrease Bonds by 5%</Button>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs="6"sm="6">
+                        <Button size="lg">Increase Investments by 5%</Button>
+                        </Col>
+                        <Col xs="6"sm="6">
+                        <Button size="lg">Decrease Investments by 5%</Button>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs="6"sm="6">
+                        <Button size="lg">Increase Savings by 5%</Button>
+                        </Col>
+                        <Col xs="6"sm="6">
+                        <Button size="lg">Decrease Savings by 5%</Button>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs="6"sm="6">
+                        <Button size="lg">Buy Housing Insurance</Button>
+                        </Col>
+                        <Col xs="6"sm="6">
+                        <Button size="lg">Buy xx Insurance</Button>
+                        </Col>
+                    </Row>
+                </Container>
             </div>
         )
     }

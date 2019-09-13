@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Button} from "reactstrap";
 import GameLanding from "./Pages/gamelanding";
 import GameDescription from "./Pages/gamedescription";
 import GameSummary from "./Pages/gamesummary";
@@ -7,90 +6,228 @@ import GamePostDecision from "./Pages/gamepostdecision";
 import GameDecision from "./Pages/gamedecision";
 
 class GameStart extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
+        this.handleChange = this.handleChange.bind(this);
         this.state = {
-            stage:1,
-            episodeName: "",
+
+            stage: 1,
             pivotNum: 1,
-            title:"",
-            headlineStart:"",
-            descriptionStart:"",
-            objective:"",
-            scproductName:"",
-            scproductEffect: 0.0,
-            nextPivot:[],
-            descriptionEnd:"",
-            optionOne:"",
-            optionTwo:"",
-            optionThree:"",
-            optionFour:"",
-            optionFive:"",
-            outcomeProb : 0,
-            headlineOne:"",
-            descriptionOne:"",
-            ocproductOneName:"",
-            ocEffectOne:0.0,
-            ocproductTwoName:"",
-            ocEffectTwo:0.0,
+            step:1,
+
+            earnings:3000,
+            spendings:1800,
+            gameControls:{
+                stocks:{
+                    value:1000.0,
+                },
+                bonds:{
+                    value:3500.0,
+                },
+                savings:{
+                    value:3200.0,
+                },
+                insurance:{
+                    value:false,
+                }
+            },
+            episodeName:"Making my money work",
+            //gamelanding
+            title: "Recession News (Stocks)",
+            headlineStart: "Making your Money work for you",
+            descriptionStart: "There are numerous headlines of a upcoming recession but you have heard read in an analyst report recently that there are some speculations about FDI inflows by foreign investors for large infrastructure projects to curb against the recession",
+            scproductName: "Stocks",
+            scproductEffect: -0.05,
+
+            nextPivot: [],
+            descriptionEnd: "",
+
+            //gamedecision
+            product : ["stocks","stocks","bonds","bonds"],
+            effect : [-0.20,-1,-0.2,-1],
+
+            optionOne: "Sell stock (-100%)",
+            optionTwo: "Sell stock (-50%)",
+            optionThree: "Buy stock (+50%)",
+            optionFour: "Buy stock (+100%)",
+            optionFive: "Do Nothing",
+
+            //gamepostdecision
+            outcomeProb: 0.8,
+            headlineOne: "Recession worsens - FDI inflows just a speculation..",
+            descriptionOne: "The recession worsens and the FDI inflows have just been a speculation but have not actually materialised",
+            ocproductOneName: "stocks",
+            ocEffectOne: -0.10,
+
+            headlineTwo:"FDI inflows slightly reduce effects of recession",
+            descriptionTwo:"FDI inflows slightly reduce effects of recession",
+            ocproductTwoName: "stocks",
+            ocEffectTwo: -0.05,
+
+            selectedHeadline:"",
+            selectedDescription:"",
+            selectedProduct :"",
+            selectedEffect : ""
+
         }
     }
+
     nextStage = () => {
-        const { stage } = this.state;
+        const {stage} = this.state;
         this.setState({
             stage: stage + 1
         })
     };
 
-    prevStage = () => {
-        const { stage } = this.state;
+    postDecisionStage = () => {
+        const {stage} = this.state;
+        //calculate odds for happening
+        var val = Math.random();
+        console.log(val);
+
+        var name;
+        var effect;
+        var desc;
+        var headline;
+
+        if(val<=this.state.outcomeProb){
+            name =  this.state.ocproductOneName;
+            effect = this.state.ocEffectOne;
+            headline = this.state.headlineOne;
+            desc = this.state.descriptionOne;
+
+        }else{
+            name =  this.state.ocproductOneName;
+            effect = this.state.ocEffectOne;
+            headline = this.state.headlineTwo;
+            desc = this.state.descriptionTwo;
+        }
+        //
+        this.editGameControls(name,effect);
         this.setState({
-            stage: stage - 1
+            selectedHeadline : headline,
+            selectedDescription : desc,
+            selectedProduct : name,
+            selectedEffect  : effect,
+            stage: stage + 1
+
         })
     };
 
-    handleChange = event => {
-        const name = event.target.name;
-        const value = event.target.value;
-        const updatedControls = {
-            ...this.state.formControls
-        };
+    handleChange = (e) => {
+        console.log(e);
+        var name;
+        var effect;
+        if(e!=undefined || e != 4){
+            name = this.state.product[e];
+            effect = this.state.effect[e];
+        }else{
+            name = "";
+            effect = 0;
+        }
 
+        this.editGameControls(name,effect);
+    };
+
+    editGameControls(name, effect){
+        const updatedControls = {
+            ...this.state.gameControls
+        };
         const updatedFormElement = {
             ...updatedControls[name]
         };
-
-        updatedFormElement.value = value;
+        let tempvalue;
+        let savings;
+        // add check to see if action could take place
+        if(effect%1 == 0 && effect != 1 && effect != -1){
+            tempvalue = updatedFormElement.value + effect;
+            savings = updatedFormElement.value - effect;
+        }else{
+            tempvalue = updatedFormElement.value + updatedFormElement.value * (effect);
+            savings = updatedFormElement.value - updatedFormElement.value * (effect);
+        }
+        updatedFormElement.value = tempvalue;
+        console.log(tempvalue);
         updatedControls[name] = updatedFormElement;
+        updatedControls["savings"] = savings;
         this.setState({
-            formControls: updatedControls
+            gameControls: updatedControls
         })
-    };
-    render(){
+    }
 
-        const { stage } = this.state;
+    render() {
 
+        const {stage} = this.state;
+        const values = this.state.gameControls;
         console.log(stage);
-        switch(stage){
+        console.log(this.state.gameControls.stocks)
+        switch (stage) {
             case 1:
-                return <GameLanding
-                    nextStage = {this.nextStage}
-                    handleChange = {this.handleChange}
-
-                ></GameLanding>;
+                return (
+                    <div className="App">
+                        <header className="App-header">
+                            <GameLanding
+                                nextStage={this.nextStage}
+                                episodeName = {this.state.episodeName}
+                                values = {values}
+                            ></GameLanding>
+                        </header>
+                    </div>)
             case 2:
-                return <GameDescription
-                    nextStage={this.nextStage}
-                    prevStage={this.prevStage}
-                    handleChange={this.handleChange}
-
-                ></GameDescription>;
+                return (
+                    <div className="App">
+                        <header className="App-header">
+                            <GameDescription
+                                nextStage={this.nextStage}
+                                headlineStart = {this.state.headlineStart}
+                                descriptionStart = {this.state.descriptionStart}
+                                scproductName = {this.state.scproductName}
+                                scproductEffect = {this.state.scproductEffect}
+                                title = {this.state.title}
+                                values = {values}
+                            ></GameDescription>
+                        </header>
+                    </div>);
             case 3:
-                return<GameDecision></GameDecision>;
+                return (<div className="App">
+                    <header className="App-header">
+                        <GameDecision
+                            nextStage={this.nextStage}
+                            postDecisionStage = {this.postDecisionStage}
+                            handleChange = {this.handleChange}
+                            products = {this.state.product}
+                            effects = {this.state.effect}
+                            descriptionStart = {this.state.descriptionStart}
+                            values = {values}
+                        ></GameDecision>
+                    </header>
+                </div>);
             case 4:
-                return <GamePostDecision></GamePostDecision>
+                return (<div className="App">
+                    <header className="App-header">
+                        <GamePostDecision
+                            selectedHeadline={this.state.selectedHeadline}
+                            selectedDescription={this.state.selectedDescription}
+                            selectedProduct = {this.state.selectedProduct}
+                            selectedEffect ={this.state.selectedEffect}
+                            nextStage={this.nextStage}
+                            values = {values}
+                        ></GamePostDecision>
+                    </header>
+                </div>);
             case 5:
-                return <GameSummary></GameSummary>
+                return (<div className="App">
+                    <header className="App-header">
+                        <GameSummary
+                            earnings = {this.state.earnings}
+                            spendings = {this.state.spendings}
+                            editGameControls = {this.editGameControls}
+                            //endStage
+                            nextStage={this.nextStage}
+                            values = {values}
+                        ></GameSummary>
+                    </header>
+                </div>);
         }
 
         // const gamelanding = (this.state.stage===1) && (
@@ -114,16 +251,15 @@ class GameStart extends Component {
 
 
         // return (
-        //     <div className="App"  >
-        //         <header className="App-header">
-        //             {gamelanding}
-        //             {gamedescription}
-        //             {gameDecision}
-        //             {gamePostDecision}
-        //             {gameSummary}
-        //         </header>
-        //     </div>
+        //
+
+
         // )
+        // {gamelanding}
+        // {gamedescription}
+        // {gameDecision}
+        // {gamePostDecision}
+        // {gameSummary}
     }
 }
 

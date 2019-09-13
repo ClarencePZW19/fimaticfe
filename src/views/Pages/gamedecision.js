@@ -1,27 +1,78 @@
 import React, {Component} from 'react';
-import {Button} from "reactstrap";
-import Card from "reactstrap/es/Card";
-import CardHeader from "reactstrap/es/CardHeader";
-import CardBody from "reactstrap/es/CardBody";
-
+import {Button, Card, CardHeader, CardText, CardBody} from "reactstrap";
+import Container from "reactstrap/es/Container";
+import Row from "reactstrap/es/Row";
+import Col from "reactstrap/es/Col";
 
 
 class GameDecision extends Component {
-    render(){
+
+    // saveAndContinue = (e) => {
+    //     this.props.nextStage()
+    // };
+
+    handleChange = (e) =>{
+        console.log(e);
+        this.props.handleChange(e);
+        this.props.postDecisionStage();
+    };
+
+    render() {
+        const {descriptionStart,products,effects} = this.props;
+        // const {values} = this.props;
+        console.log(effects);
+
+        function formatEffect(effect){
+            if(effect%1 == 0 && effect != 1 && effect != -1){
+                return"  $" + effect.toString()
+            }else{
+                return "  "  + (effect*100).toString() + "%"
+            }
+        }
+
         return (
-            <div >
-                <Card>
-                    <CardHeader>
-                        <h2>Stage Description</h2>
-                    </CardHeader>
-                    <CardBody>
-                        <Button>Option 1</Button>
-                        <Button>Option 2</Button>
-                        <Button>Option 3</Button>
-                        <Button>Option 4</Button>
-                        <Button>Option 5</Button>
-                    </CardBody>
-                </Card>
+            <div>
+                <Container>
+                    <Row>
+                        {descriptionStart}
+                    </Row>
+                    <Row>
+                        <p>
+                            What would you do?
+                        </p>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Button
+                                onClick={()=>this.handleChange(0)}>{products[0].toUpperCase() + formatEffect(effects[0]) }</Button>
+
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Button
+                                onClick={()=>this.handleChange(1)}>{products[1].toUpperCase() + formatEffect(effects[1])}</Button>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Button
+                                onClick={()=>this.handleChange(2)}>{products[2].toUpperCase() + formatEffect(effects[2])}</Button>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Button
+                                onClick={()=>this.handleChange(3)}>{products[3].toUpperCase() + formatEffect(effects[3])}</Button>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Button
+                                onClick={()=>this.handleChange(4)}>Do Nothing</Button>
+                        </Col>
+                    </Row>
+                </Container>
             </div>
         )
     }

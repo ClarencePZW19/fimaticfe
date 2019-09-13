@@ -8,12 +8,12 @@ class GameLanding extends Component {
     saveAndContinue = () => this.props.nextStage();
 
     render(){
+        const {episodeName} = this.props;
         return (
             <div >
-                <h2>hello world</h2>
-                <h2>{"Epasdisode Name"}</h2>
+                <h1>{episodeName}</h1>
                 <Button color="primary"
-                        onClick={this.saveAndContinue}>Hello</Button>{' '}
+                        onClick={this.saveAndContinue}>Proceed</Button>{' '}
             </div>
         )
     }
