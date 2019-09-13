@@ -10,7 +10,7 @@ class Login extends Component{
     submitForm(e) {
         e.preventDefault();
         console.log(e);
-        this.props.history.push({pathname: "/gamestart"})
+        this.props.history.push({pathname: "/overview"})
 
     }
     render(){
