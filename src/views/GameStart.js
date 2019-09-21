@@ -67,9 +67,8 @@ class GameStart extends Component {
     }
     checkActionValid(){
         let savings = this.state.gameControls.savings.value;
-        console.log(savings);
         if(savings<=0){
-            console.log("hello")
+            console.log("hello");
             return false;
         }else{
             return true;

@@ -8,7 +8,7 @@ const GameStart = lazy(() => import('./views/GameStart'));
 const Login = lazy(() => import('./views/Login'));
 const GameEnd = lazy(() => import('./views/GameEnd'));
 const Overview = lazy(() => import('./views/Overview'));
-const ChooseAllocation = lazy(() => import('./views/ChooseAllocation'));
+const ChooseAllocation = lazy(() => import('./views/PortfolioAllocation'));
 
 
 function LazyComponent(Component) {

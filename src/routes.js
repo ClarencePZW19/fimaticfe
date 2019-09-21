@@ -3,7 +3,7 @@ import GameStart from './views/GameStart'
 import Login from "./views/Login";
 import GameEnd from "./views/GameEnd";
 import Overview from "./views/Overview";
-import ChooseAllocation from "./views/ChooseAllocation";
+import ChooseAllocation from "./views/PortfolioAllocation";
 
 const routes = [
     { path: '/gameend', name: 'GameEnd', component: GameEnd },
