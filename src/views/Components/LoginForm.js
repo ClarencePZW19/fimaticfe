@@ -5,6 +5,7 @@ import Form from "reactstrap/es/Form";
 import InputGroup from "reactstrap/es/InputGroup";
 import InputGroupText from "reactstrap/es/InputGroupText";
 import Alert from "reactstrap/es/Alert";
+import {singleButtonStyle} from "../../css";
 
 
 class LoginForm extends Component{
@@ -85,11 +86,9 @@ class LoginForm extends Component{
 
                     ></Input>
                 </InputGroup>
+                <br/>
                     <Button
-                        size="lg"
-                        type="submit"
-                        color={'#CC0000'}
-
+                        style={singleButtonStyle}
                     >Login</Button>
             </Form>
         </div>

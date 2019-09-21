@@ -4,7 +4,7 @@ import {
     GET_AVATAR,
     GET_SCENARIO,
     API_BASE_URL,
-    ACCESS_TOKEN
+    // ACCESS_TOKEN
 } from "../_constants";
 
 export const Services = {
@@ -79,3 +79,10 @@ function getScenario(getScenarioRequest){
     })
 }
 
+function register(registerRequest){
+    return request({
+        url: API_BASE_URL + REGISTER,
+        method: 'POST',
+        body: JSON.stringify(registerRequest)
+    })
+}

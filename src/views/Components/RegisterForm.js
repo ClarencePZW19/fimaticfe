@@ -5,7 +5,23 @@ import Form from "reactstrap/es/Form";
 import InputGroup from "reactstrap/es/InputGroup";
 import InputGroupText from "reactstrap/es/InputGroupText";
 import Alert from "reactstrap/es/Alert";
+import {singleButtonStyle} from "../../css";
 
+const ageOptions = [
+    { value: 18, displayValue: "18" },
+    { value: 19, displayValue: "19" },
+    { value: 20, displayValue: "20" },
+    { value: 21, displayValue: "21" },
+    { value: 22, displayValue: "22" },
+    { value: 23, displayValue: "23" },
+    { value: 24, displayValue: "24" },
+    { value: 25, displayValue: "25" },
+    { value: 26, displayValue: "26" },
+    { value: 27, displayValue: "27" },
+    { value: 28, displayValue: "28" },
+    { value: 29, displayValue: "29" },
+    { value: 30, displayValue: "30" },
+];
 
 class RegisterForm extends Component{
 
@@ -15,16 +31,25 @@ class RegisterForm extends Component{
             username: "",
             password: "",
             error:false,
+            age:0,
+            formControls:{
+
+            }
         }
     }
     componentDidMount() {
         const user = JSON.parse(localStorage.getItem('user'))
         if (user) this.props.history.push('/');
     }
-
+    handleChange = async event => {
+        const name = event.target.name;
+        await this.setState({
+            [name]: event.target.value,
+        })
+    };
 
     render() {
-        let error = this.state.error;
+        console.log(this.state.age);
         return <div className="App">
             <Form className="form" onSubmit={(e) => this.submitForm(e)}>
                 <InputGroup>
@@ -56,29 +81,39 @@ class RegisterForm extends Component{
                         placeholder="Password"
                         name = "password"
                         value={this.state.password}
+
                         onChange={(e) => {
                             this.handleChange(e)
                         }}
 
                     ></Input>
+
+                </InputGroup>
+                <InputGroup>
+                    <InputGroupText>
+                        {"Age : "}
+                    </InputGroupText>
                     <Input
                         bsSize="lg"
-                        type="password"
-                        placeholder="Password"
-                        name = "password"
-                        value={this.state.password}
+                        type="select"
+                        name = "age"
+                        value={this.state.age}
                         onChange={(e) => {
                             this.handleChange(e)
                         }}
 
-                    ></Input>
+                    >
+                        {ageOptions.map(option => (
+                            <option value={option.value}>
+                                {option.displayValue}
+                            </option>
+                        ))}
+                    </Input>
                 </InputGroup>
-                <Button
-                    size="lg"
-                    type="submit"
-                    color={'#CC0000'}
+                <br/>
+                <Button style={singleButtonStyle}
 
-                >Login</Button>
+                >Register</Button>
             </Form>
         </div>
     }

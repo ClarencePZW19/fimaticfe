@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {data} from "./Data";
 import Button from "reactstrap/es/Button";
+import {textArea} from "../css";
 
 class Overview extends Component{
 
@@ -15,9 +16,9 @@ class Overview extends Component{
         console.log(overview);
         return (<div className="App">
             <header className="App-header">
+                <div style={textArea}><h1>{overview.title}</h1></div>
 
-                <h1>{overview.title}</h1>
-                <h2>{overview.headlineStart}</h2>
+                <div style = {textArea}><h2>{overview.headlineStart}</h2></div>
                 <br/>
 
                 <p>

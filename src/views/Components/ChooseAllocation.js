@@ -194,10 +194,16 @@ class ChooseAllocation extends Component {
                     </Row>
                     <br/>
                     <Row>
+                        <h5> Increase or Decrease your Bond holdings : </h5>
+                    </Row>
+                    <Row>
                         <Button size="lg" onClick={() => this.handleChange("bonds", 1)}>Increase Bonds by 5%</Button>
                         <Button size="lg" onClick={() => this.handleChange("bonds", -1)}>Decrease Bonds by 5%</Button>
                     </Row>
                     <br/>
+                    <Row>
+                        <h5> Increase or Decrease your Stock holdings : </h5>
+                    </Row>
                     <Row>
                         <Button size="lg" onClick={() => this.handleChange("stocks", 1)}>Increase Stocks by 5%</Button>
                         <Button size="lg" onClick={() => this.handleChange("stocks", -1)}>Decrease Stocks by 5%</Button>

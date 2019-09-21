@@ -12,6 +12,7 @@ class GameStart extends Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.state = {
+            //5 stages per scenario
             stage: 1,
             pivotNum: 1,
             step:1,
@@ -85,13 +86,13 @@ class GameStart extends Component {
     postDecisionStage = () => {
         const {stage} = this.state;
         //calculate odds for happening
-        var val = Math.random();
+        let val = Math.random();
         console.log(val);
 
-        var name;
-        var effect;
-        var desc;
-        var headline;
+        let name;
+        let effect;
+        let desc;
+        let headline;
 
         if(val<=this.state.outcomeProb){
             name =  this.state.ocproductOneName;
@@ -120,8 +121,11 @@ class GameStart extends Component {
     postGameSummaryStage = () =>{
         const{stage} = this.state;
         //change stage number to 1
+        this.setState({
 
+            stage: 1
 
+        })
         //reload state with new index
 
     };
@@ -138,8 +142,8 @@ class GameStart extends Component {
 
     handleChange = (e) => {
         console.log(e);
-        var name;
-        var effect;
+        let name;
+        let effect;
         if(e!=undefined || e != 4){
             name = this.state.product[e];
             effect = this.state.effect[e];
@@ -194,19 +198,17 @@ class GameStart extends Component {
         const {stage} = this.state;
         const values = this.state.gameControls;
         console.log(stage);
-        console.log(this.state.gameControls.stocks)
+        console.log(this.state.gameControls.stocks);
         switch (stage) {
             case 1:
                 return (
                     <div className="App">
-                        <header className="App-header">
                             <GameLanding
                                 nextStage={this.nextStage}
                                 episodeName = {this.state.episodeName}
                                 values = {values}
                             ></GameLanding>
-                        </header>
-                    </div>)
+                    </div>);
             case 2:
                 return (
                     <div className="App">
@@ -255,9 +257,8 @@ class GameStart extends Component {
                         <GameSummary
                             earnings = {this.state.earnings}
                             spendings = {this.state.spendings}
-                            editGameControls = {this.editGameControls}
                             //endStage
-                            nextStage={this.nextStage}
+                            postGameSummaryStage ={this.postGameSummaryStage}
                             values = {values}
                         ></GameSummary>
                     </header>

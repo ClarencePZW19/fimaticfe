@@ -9,7 +9,7 @@ const Login = lazy(() => import('./views/Login'));
 const GameEnd = lazy(() => import('./views/GameEnd'));
 const Overview = lazy(() => import('./views/Overview'));
 const ChooseAllocation = lazy(() => import('./views/PortfolioAllocation'));
-
+const Register = lazy(()=> import('./views/Register'));
 
 function LazyComponent(Component) {
     return props => (
@@ -29,6 +29,7 @@ class App extends Component {
                     <Route path="/login" component={LazyComponent(Login)}/>
                     <Route path="/overview" component={LazyComponent(Overview)}/>
                     <Route path="/chooseallocation" component={LazyComponent(ChooseAllocation)}/>
+                    <Route path="/register" component={LazyComponent(Register)}/>
                     <Route path="/" component={LazyComponent(Login)}/>
                 </Switch>
             </BrowserRouter>

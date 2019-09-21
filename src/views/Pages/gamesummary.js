@@ -2,47 +2,40 @@ import React, {Component} from 'react';
 import {Button} from "reactstrap";
 import Container from "reactstrap/es/Container";
 import Row from "reactstrap/es/Row";
+import ChooseAllocation from "../Components/ChooseAllocation";
+import PortfolioSummary from "../Components/PortfolioSummary";
+import ProfilePicture from "../Components/ProfilePicture";
+import {singleButtonStyle, textArea} from "../../css";
+import Col from "reactstrap/es/Col";
 
 class GameSummary extends Component {
+    postGameSummaryStage = this.props.postGameSummaryStage;
+
     render() {
-
-        const {earnings, spendings} = this.props;
-
+        let spendings = 1000;
+        let earnings = 3500;
         return (
+
+
             <div>
                 <Container>
+                    <h2>End of month Summary</h2>
+                    <div style = {textArea}>
                     <Row>
-                        <h3>End of month Summary</h3>
+                        <Col>
+                            <ProfilePicture/>
+                        </Col>
+                        <Col>
+                            <h4>Caroline Wozniacki</h4>
+                            <p>Monthly Earnings: {earnings}</p>
+                            <p>Monthly Spending: {spendings}</p>
+                        </Col>
                     </Row>
-                    <Row>
-                        <h6>Monthly Earnings</h6>
-                        <h6>{earnings}</h6>
-                    </Row>
-                    <Row>
-                        <h6>Monthly Spending : </h6>
-                        <h6>{spendings}</h6>
-                    </Row>
-
-                    <Row>
-
-                    </Row>
-                    <Row>
-                        <Button size="lg" >Increase Bonds by 5%</Button>
-                        <Button size="lg">Decrease Bonds by 5%</Button>
-                    </Row>
-                    <Row>
-                        <Button size="lg">Increase Investments by 5%</Button>
-                        <Button size="lg">Decrease Investments by 5%</Button>
-                    </Row>
-                    <Row>
-                        <Button size="lg">Increase Savings by 5%</Button>
-                        <Button size="lg">Decrease Savings by 5%</Button>
-                    </Row>
-                    <Row>
-                        <Button size="lg">Buy Housing Insurance</Button>
-                        <Button size="lg">Buy xx Insurance</Button>
-                    </Row>
+                    </div>
+                    <PortfolioSummary/>
+                    {/*<ChooseAllocation></ChooseAllocation>*/}
                 </Container>
+                <Button style={singleButtonStyle} onClick={this.postGameSummaryStage}>Proceed to next month</Button>
             </div>
         )
     }
