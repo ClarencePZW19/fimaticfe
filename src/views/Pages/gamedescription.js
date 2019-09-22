@@ -8,6 +8,7 @@ import Container from "reactstrap/es/Container";
 import Col from "reactstrap/es/Col";
 import Row from "reactstrap/es/Row";
 import {headline, paratext, singlePillButtonStyle, textArea, titleStyle} from "../../css";
+import PortfolioSummary from "../Components/PortfolioSummary";
 
 
 class GameDescription extends Component {
@@ -29,10 +30,11 @@ class GameDescription extends Component {
         }
         return (
             <div>
+
                 <div style={titleStyle}>
                     <h3>{title}</h3>
                 </div>
-
+                <PortfolioSummary gameControls={this.props.gameControls}/>
                 <div style={headline}>
                     <h4>{headlineStart}</h4>
                 </div>

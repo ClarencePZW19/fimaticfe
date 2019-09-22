@@ -13,20 +13,41 @@ import {
     titleStyle
 } from "../css";
 import Navbar from "./Components/Navbar";
+import {Services} from "../_services";
 
 class Overview extends Component {
 
     constructor(props) {
         super(props);
+        this.state={
+            data:{
+
+            }
+        }
     }
 
     toAllocation() {
         this.props.history.push({pathname: "/portfolioallocation" +
                 ""})
     }
+    componentDidMount() {
+        Services.getOverview().then(result =>{
+            console.log(result);
+            this.setState({
+                data:result,
+            })
+        }).catch(error =>{
+            console.log(error);
+            this.setState({error:true})
+        });
+
+
+    }
 
     render() {
-        const overview = data[0];
+        const overview = this.state.data;
+        console.log(overview);
+        // console.log(data)
         return (
 
             <div style={pageComponentStyle}>

@@ -18,7 +18,7 @@ class ChooseAllocation extends Component {
             error: false,
 
             earnings: 800,
-            fixsavings: 20000,
+            networth:0,
             spendings: 300,
             gameControls: {
                 stocks: {
@@ -36,6 +36,31 @@ class ChooseAllocation extends Component {
             },
         };
     }
+    componentDidMount() {
+        console.log(this.props.gameControls);
+        this.setState({
+            gameControls:this.props.gameControls,
+            networth:this.props.networth
+        })
+    }
+    componentDidUpdate(prevProps) {
+        if(this.props.gameControls !== prevProps.gameControls){
+            this.setState({
+                gameControls:this.props.gameControls,
+                networth:this.props.networth
+            })
+        }
+    }
+
+    // shouldComponentUpdate(nextProps, nextState, nextContext) {
+    //     if(nextState!= this.state){
+    //         console.log(nextState);
+    //         console.log(this.state);
+    //     }
+    //     // this.setState({
+    //     //     gameControls:nextProps.gameControls,
+    //     // })
+    // }
 
     checkActionValid(updatedGameControls) {
         let savings = this.state.gameControls.savings.value;
@@ -65,18 +90,23 @@ class ChooseAllocation extends Component {
     }
 
     handleChange = (name, multi) => {
-
+        console.log(name,multi);
         let effect;
         if (name != "insurance") {
-            effect = 0.05 * multi * this.state.fixsavings;
+            effect = 0.05 * multi * this.state.networth;
         } else {
             //choice of insurance to buy
+            console.log(multi);
             effect = multi;
+            console.log(effect);
         }
+        console.log(effect);
         this.editGameControls(name, effect);
     };
 
     editGameControls(name, effect) {
+        console.log(name);
+        console.log(effect);
         const updatedControls = {
             ...this.state.gameControls
         };
@@ -157,9 +187,9 @@ class ChooseAllocation extends Component {
     }
 
     render() {
-        let {earnings, spendings} = this.state;
-        // let savings = this.state.gameControls.savings.value;
-        let values = Object.values(this.state.gameControls);
+        // let {earnings, spendings} = this.state;
+        // // let savings = this.state.gameControls.savings.value;
+        // let values = Object.values(this.state.gameControls);
 
         let error = this.state.error;
         return <div style={pageComponentStyle}>

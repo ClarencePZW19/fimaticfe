@@ -4,6 +4,7 @@ import './App.css';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import LoadingComponent from './common/LoadingComponent';
 import {mainpage} from "./css";
+import RegisterForm from "./views/Components/RegisterForm";
 
 const GameStart = lazy(() => import('./views/GameStart'));
 const Login = lazy(() => import('./views/Login'));
@@ -11,6 +12,8 @@ const GameEnd = lazy(() => import('./views/GameEnd'));
 const Overview = lazy(() => import('./views/Overview'));
 const PortfolioAllocation = lazy(() => import('./views/PortfolioAllocation'));
 const Register = lazy(()=> import('./views/Register'));
+const ProductRecommendation = lazy(()=>import('./views/ProductRecommendation'));
+const EndGameSummary = lazy(()=> import('./views/EndGameSummary'));
 
 function LazyComponent(Component) {
     return props => (
@@ -32,6 +35,8 @@ class App extends Component {
                     <Route path="/overview" component={LazyComponent(Overview)}/>
                     <Route path="/portfolioallocation" component={LazyComponent(PortfolioAllocation)}/>
                     <Route path="/register" component={LazyComponent(Register)}/>
+                    <Route path="/productrecommendation" component={LazyComponent(ProductRecommendation)}/>
+                    <Route path="/endgamesummary" component={LazyComponent(EndGameSummary)}/>
                     <Route path="/" component={LazyComponent(Login)}/>
                 </Switch>
             </BrowserRouter>

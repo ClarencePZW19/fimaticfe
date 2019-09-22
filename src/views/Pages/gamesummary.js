@@ -14,7 +14,9 @@ class GameSummary extends Component {
     render() {
         let spendings = 1000;
         let earnings = 3500;
+        console.log(this.props.gameControls);
         return (
+
 
 
             <div>
@@ -26,13 +28,13 @@ class GameSummary extends Component {
                             <ProfilePicture/>
                         </Col>
                         <Col>
-                            <h4>Caroline Wozniacki</h4>
-                            <p>Monthly Earnings: {earnings}</p>
-                            <p>Monthly Spending: {spendings}</p>
+                            <h4>{JSON.parse(localStorage.getItem('user')).username.toUpperCase()}</h4>
+                            {/*<p>Monthly Earnings: {earnings}</p>*/}
+                            {/*<p>Monthly Spending: {spendings}</p>*/}
                         </Col>
                     </Row>
                     </div>
-                    <PortfolioSummary/>
+                    <PortfolioSummary gameControls={this.props.gameControls}/>
                     {/*<ChooseAllocation></ChooseAllocation>*/}
                 </Container>
                 <Button style={singleButtonStyle} onClick={this.postGameSummaryStage}>Proceed to next month</Button>

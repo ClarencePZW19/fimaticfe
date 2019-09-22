@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PortfolioSummary from "./Components/PortfolioSummary";
 
 
 class GameEnd extends Component {
@@ -11,8 +12,10 @@ class GameEnd extends Component {
         return (
             <div className="App">
                 <header className="App-header">
+
                     <h1>GAME OVER</h1>
-                    <h2></h2>
+
+                    <h2>DO NOT HAVE 0 SAVINGS </h2>
                 </header>
             </div>
         )

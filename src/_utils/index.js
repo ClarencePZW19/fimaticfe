@@ -27,3 +27,25 @@ export function populateInsurance(booleanArray) {
     // <Button onClick={() => this.handleChange("insurance", 0)}>Buy Basic Health Insurance for
     //     $1000</Button>
 }
+export function calculateNetworth(gameControls){
+
+    return gameControls.stocks.value + gameControls.bonds.value + gameControls.savings.value;
+
+}
+export function roundNumber(number){
+    return Math.round(number * 100) / 100
+}
+export function checkLose(gameControls){
+    if(gameControls.savings.value <= 0 || isNaN(gameControls.savings.value)){
+        return true;
+    }else{
+        return false
+    }
+}
+export function roundToZero(number){
+    if(isNaN(number)){
+        return 0
+    }else{
+        return number
+    }
+}

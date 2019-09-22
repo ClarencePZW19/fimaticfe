@@ -6,6 +6,8 @@ import GamePostDecision from "./Pages/gamepostdecision";
 import GameDecision from "./Pages/gamedecision";
 import {data} from "./Data";
 import {pageComponentStyle} from "../css";
+import {calculateNetworth, checkLose, roundNumber} from "../_utils";
+import {Services} from "../_services";
 
 
 class GameStart extends Component {
@@ -14,9 +16,13 @@ class GameStart extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.state = {
             //5 stages per scenario
+
             stage: 1,
+            // first Scenario
+            scenarioId:1,
             pivotNum: 1,
             step:1,
+            count:1,
             earnings:3000,
             spendings:1800,
             gameControls:{
@@ -31,39 +37,21 @@ class GameStart extends Component {
                 },
                 insurance:{
                     value:[],
-                }
+                },
+
+
             },
-            episodeName:"Making my money work",
-            //gamelanding
-            title: "Recession News (Stocks)",
-            headlineStart: "Making your Money work for you",
-            descriptionStart: "There are numerous headlines of a upcoming recession but you have heard read in an analyst report recently that there are some speculations about FDI inflows by foreign investors for large infrastructure projects to curb against the recession",
-            scproductName: "Stocks",
-            scproductEffect: -0.05,
+            scenarioData:{
+                episodeName:""
+            },
+            investmentsscore:0,
+            savingsscore:0,
+            bondsscore:0,
+            savingscount:0,
+            bondscount:0,
+            investmentscount:0,
 
-            nextPivot: [],
-            descriptionEnd: "",
 
-            //gamedecision
-            product : ["stocks","stocks","bonds","bonds"],
-            effect : [-0.20,-1,-0.2,-1],
-
-            //gamepostdecision
-            outcomeProb: 0.8,
-            headlineOne: "Recession worsens - FDI inflows just a speculation..",
-            descriptionOne: "The recession worsens and the FDI inflows have just been a speculation but have not actually materialised",
-            ocproductOneName: "stocks",
-            ocEffectOne: -0.10,
-
-            headlineTwo:"FDI inflows slightly reduce effects of recession",
-            descriptionTwo:"FDI inflows slightly reduce effects of recession",
-            ocproductTwoName: "stocks",
-            ocEffectTwo: -0.05,
-
-            selectedHeadline:"",
-            selectedDescription:"",
-            selectedProduct :"",
-            selectedEffect : ""
 
         }
     }
@@ -79,6 +67,10 @@ class GameStart extends Component {
     }
     nextStage = () => {
         const {stage} = this.state;
+        if(stage == 2){
+            //
+            this.editGameControls(this.state.scenarioData.scenarioProduct,this.state.scenarioData.scenarioEffect)
+        }
         this.setState({
             stage: stage + 1
         })
@@ -96,18 +88,20 @@ class GameStart extends Component {
         let headline;
 
         if(val<=this.state.outcomeProb){
-            name =  this.state.ocproductOneName;
-            effect = this.state.ocEffectOne;
-            headline = this.state.headlineOne;
-            desc = this.state.descriptionOne;
+            name =  this.state.scenarioData.outcomeProductOne;
+            effect = this.state.scenarioData.outcomeEffectOne;
+            headline = this.state.scenarioData.headlineOne;
+            desc = this.state.scenarioData.descriptionOne;
 
         }else{
-            name =  this.state.ocproductOneName;
-            effect = this.state.ocEffectOne;
-            headline = this.state.headlineTwo;
-            desc = this.state.descriptionTwo;
+            name =  this.state.scenarioData.outcomeProductOne;
+            effect = this.state.scenarioData.outcomeEffectOne;
+            headline = this.state.scenarioData.headlineTwo;
+            desc = this.state.scenarioData.descriptionTwo;
         }
         //
+        console.log(name);
+        console.log(effect);
         this.editGameControls(name,effect);
         this.setState({
             selectedHeadline : headline,
@@ -121,39 +115,101 @@ class GameStart extends Component {
 
     postGameSummaryStage = () =>{
         const{stage} = this.state;
+        let count = this.state.count + 1;
+        let state = this.state;
+        if(count > 5){
+            this.props.history.push({pathname: "/endgamesummary",state: {state}});
+
+        }
+
         //change stage number to 1
+        this.updateComponent();
         this.setState({
 
-            stage: 1
-
+            stage: 2,
+            count:count
         })
         //reload state with new index
 
     };
     componentDidMount() {
         // import the index
-        console.log(data);
-        let gameControl = this.props.location.state;
-        console.log(gameControl);
-        //set the data
-        this.setState({
 
-        })
+        let gameControls = this.props.location.state.toSend;
+
+        let userData = JSON.parse(localStorage.getItem('user'));
+
+             let networth = calculateNetworth(gameControls);
+
+        let scObject = {
+            savings:gameControls.savings.value,
+            stocks:gameControls.stocks.value,
+            bonds:gameControls.bonds.value,
+            scenarioId: this.state.scenarioId,
+            userId : userData.id,
+            insurance :gameControls.insurance.value,
+            networth : networth,
+        };
+        console.log(scObject);
+        let scenarioData;
+        Services.getScenario(scObject).then(result =>{
+
+            scenarioData = result;
+            this.setState({
+                gameControls:gameControls,
+                scenarioData:scenarioData,
+
+            })
+        }).catch(error => {
+            console.log(error);
+
+        });
+
     }
+    updateComponent(){
+        let gameControls = this.state.gameControls;
 
+        let userData = JSON.parse(localStorage.getItem('user'));
+
+        let networth = calculateNetworth(gameControls);
+        let scObject = {
+            savings:gameControls.savings.value,
+            stocks:gameControls.stocks.value,
+            bonds:gameControls.bonds.value,
+            scenarioId: this.state.scenarioId,
+            userId : userData.id,
+            insurance :gameControls.insurance.value,
+            networth : networth,
+        };
+        console.log(scObject);
+        let scenarioData;
+        Services.getScenario(scObject).then(result =>{
+
+            scenarioData = result;
+
+            this.setState({
+                gameControls:gameControls,
+                scenarioData:scenarioData,
+
+            })
+        }).catch(error => {
+
+
+        });
+    }
     handleChange = (e) => {
-        console.log(e);
         let name;
         let effect;
+
         if(e!=undefined || e != 4){
-            name = this.state.product[e];
-            effect = this.state.effect[e];
+            name = this.state.scenarioData.products[e];
+            effect = this.state.scenarioData.effects[e];
         }else{
             name = "";
             effect = 0;
         }
 
-        this.editGameControls(name,effect);
+        this.editGameActionControls(name,effect);
     };
 
     editGameControls(name, effect){
@@ -163,51 +219,133 @@ class GameStart extends Component {
         const updatedFormElement = {
             ...updatedControls[name]
         };
+        // const updatedFormSavings = {
+        //     ...updatedControls["savings"]
+        // };
+        // console.log(updatedFormSavings)
+        let tempvalue;
+        // let savings;
+        // add check to see if action could take place
+        if(effect%1 == 0 && effect != 1 && effect != -1){
+            tempvalue = updatedFormElement.value + effect;
+            // savings = updatedFormSavings.value - effect;
+        }else{
+            tempvalue = updatedFormElement.value + updatedFormElement.value * (effect);
+            // savings = updatedFormSavings.value - updatedFormElement.value * (effect);
+        }
+        if(this.checkActionValid()){
+
+            updatedFormElement.value = roundNumber(tempvalue);
+            // updatedFormSavings.value = savings;
+            updatedControls[name] = updatedFormElement;
+            // updatedControls["savings"] = updatedFormSavings;
+            this.setState({
+                gameControls: updatedControls
+            });
+            if(checkLose(updatedControls)){
+                this.props.history.push({pathname: "/gameend",
+                    state:this.state});
+            }
+        }else{
+            this.props.history.push({pathname: "/gameend",
+                                state:this.state});
+        }
+        updatedFormElement.value = roundNumber(tempvalue);
+        // updatedFormSavings.value = savings;
+        updatedControls[name] = updatedFormElement;
+        // updatedControls["savings"] = updatedFormSavings;
+        this.setState({
+            gameControls: updatedControls
+        })
+    }
+    editGameActionControls(name, effect){
+
+        //get the index of the effect in products
+        //index - 1
+        let decision = this.state.scenarioData.effects.indexOf(effect) + 1;
+        let optimalDecision = this.state.scenarioData.optimalDecision
+        let multi = 0;
+        if(decision == optimalDecision){
+            multi = 1;
+        }
+
+        if(name == "savings"){
+
+            this.setState({
+                savingsscore:this.state.savingsscore+multi,
+                savingscount:this.state.savingscount + 1
+            })
+        }else if(name=="bonds"){
+            this.setState({
+                bondsscore:this.state.bondsscore+multi,
+                bondscount:this.state.bondscount + 1
+            })
+        }else if(name=="stocks"){
+            this.setState({
+                investmentsscore:this.state.investmentsscore+multi,
+                investmentscount:this.state.investmentscount + 1
+            })
+        }else{
+
+        }
+        const updatedControls = {
+            ...this.state.gameControls
+        };
+        const updatedFormElement = {
+            ...updatedControls[name]
+        };
+        const updatedFormSavings = {
+            ...updatedControls["savings"]
+        };
+
         let tempvalue;
         let savings;
         // add check to see if action could take place
         if(effect%1 == 0 && effect != 1 && effect != -1){
             tempvalue = updatedFormElement.value + effect;
-            savings = updatedFormElement.value - effect;
+            savings = updatedFormSavings.value - effect;
         }else{
             tempvalue = updatedFormElement.value + updatedFormElement.value * (effect);
-            savings = updatedFormElement.value - updatedFormElement.value * (effect);
+            savings = updatedFormSavings.value - updatedFormElement.value * (effect);
         }
         if(this.checkActionValid()){
 
-            updatedFormElement.value = tempvalue;
-            console.log(tempvalue);
+            updatedFormElement.value = roundNumber(tempvalue);
+            updatedFormSavings.value = roundNumber(savings);
             updatedControls[name] = updatedFormElement;
-            updatedControls["savings"] = savings;
+            updatedControls["savings"] = updatedFormSavings;
             this.setState({
                 gameControls: updatedControls
-            });
+            },this.postDecisionStage);
         }else{
             this.props.history.push({pathname: "/gameend",
-                                state:this.state});
+                state:this.state});
         }
         updatedFormElement.value = tempvalue;
-        console.log(tempvalue);
+        // updatedFormSavings.value = savings;
+
         updatedControls[name] = updatedFormElement;
-        updatedControls["savings"] = savings;
+        // updatedControls["savings"] = updatedFormSavings;
         this.setState({
             gameControls: updatedControls
         })
     }
 
+
     render() {
         const {stage} = this.state;
         const values = this.state.gameControls;
-        console.log(stage);
-        console.log(this.state.gameControls.stocks);
+
+        // let scProductEffect =   parsethis.state.scenarioData.scproductEffect
         switch (stage) {
             case 1:
                 return (
                     <div style={pageComponentStyle}>
                             <GameLanding
                                 nextStage={this.nextStage}
-                                episodeName = {this.state.episodeName}
-                                values = {values}
+                                episodeName = {this.state.scenarioData.episodeName}
+                                gameControls = {this.state.gameControls}
+
                             ></GameLanding>
                     </div>);
             case 2:
@@ -216,12 +354,12 @@ class GameStart extends Component {
                         <header className="App-header">
                             <GameDescription
                                 nextStage={this.nextStage}
-                                headlineStart = {this.state.headlineStart}
-                                descriptionStart = {this.state.descriptionStart}
-                                scproductName = {this.state.scproductName}
-                                scproductEffect = {this.state.scproductEffect}
-                                title = {this.state.title}
-                                values = {values}
+                                // headlineStart = {this.state.scenarioData.headlineStart}
+                                descriptionStart = {this.state.scenarioData.descriptionStart}
+                                scproductName = {this.state.scenarioData.scenarioProduct}
+                                scproductEffect = {this.state.scenarioData.scenarioEffect}
+                                title = {this.state.scenarioData.headlineStart}
+                                gameControls = {this.state.gameControls}
                             ></GameDescription>
                         </header>
                     </div>);
@@ -229,13 +367,12 @@ class GameStart extends Component {
                 return (<div className="App">
                     <header className="App-header">
                         <GameDecision
-                            nextStage={this.nextStage}
                             postDecisionStage = {this.postDecisionStage}
                             handleChange = {this.handleChange}
-                            products = {this.state.product}
-                            effects = {this.state.effect}
-                            descriptionStart = {this.state.descriptionStart}
-                            values = {values}
+                            products = {this.state.scenarioData.products}
+                            effects = {this.state.scenarioData.effects}
+                            descriptionStart = {this.state.scenarioData.descriptionStart}
+                            gameControls = {this.state.gameControls}
                         ></GameDecision>
                     </header>
                 </div>);
@@ -248,7 +385,7 @@ class GameStart extends Component {
                             selectedProduct = {this.state.selectedProduct}
                             selectedEffect ={this.state.selectedEffect}
                             nextStage={this.nextStage}
-                            values = {values}
+                            gameControls = {this.state.gameControls}
                         ></GamePostDecision>
                     </header>
                 </div>);
@@ -260,7 +397,7 @@ class GameStart extends Component {
                             spendings = {this.state.spendings}
                             //endStage
                             postGameSummaryStage ={this.postGameSummaryStage}
-                            values = {values}
+                            gameControls = {this.state.gameControls}
                         ></GameSummary>
                     </header>
                 </div>);

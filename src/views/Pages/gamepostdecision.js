@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Button} from "reactstrap";
 import Container from "reactstrap/es/Container";
 import Row from "reactstrap/es/Row";
+import PortfolioSummary from "../Components/PortfolioSummary";
 
 class GamePostDecision extends Component {
     saveAndContinue = () => this.props.nextStage();
@@ -15,6 +16,7 @@ class GamePostDecision extends Component {
         }
         return (
             <div >
+
                 <Container>
                     <Row>
                         <h2>{selectedHeadline}</h2>

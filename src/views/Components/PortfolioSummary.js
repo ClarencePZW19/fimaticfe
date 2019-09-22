@@ -49,7 +49,7 @@ class PortfolioSummary extends Component {
                     </td>
                     <td>
                         <p style={paratext}>
-                            Bonds : {gameControls.bonds.value}
+                            Bonds : $ {gameControls.bonds.value}
                         </p>
                     </td>
                     <td>
@@ -59,7 +59,7 @@ class PortfolioSummary extends Component {
                     </td>
                     <td>
                         <p style={paratext}>
-                            Stocks : {gameControls.stocks.value}
+                            Stocks : $ {gameControls.stocks.value}
                         </p>
                     </td>
                 </tr>
@@ -71,7 +71,7 @@ class PortfolioSummary extends Component {
                     </td>
                     <td>
                         <p style={paratext}>
-                            Savings : {gameControls.savings.value}
+                            Savings : $ {gameControls.savings.value}
                         </p>
                     </td>
                     <td>
