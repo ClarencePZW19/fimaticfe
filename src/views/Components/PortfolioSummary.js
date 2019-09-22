@@ -5,14 +5,37 @@ import stocks from "../../assets/5_investments.png"
 import savings from "../../assets/5_savings.png"
 import insurance from "../../assets/5_insurance.png"
 import {paratext} from "../../css";
+import Button from "reactstrap/es/Button";
+import Row from "reactstrap/es/Row";
+import {populateInsurance} from "../../_utils";
 
 class PortfolioSummary extends Component {
 
     constructor(props) {
         super(props);
+        this.state={
+            gameControls:{
+                stocks:{
+                    value:1000.0,
+                },
+                bonds:{
+                    value:3500.0,
+                },
+                savings:{
+                    value:1000.0,
+                },
+                insurance:{
+                    value:[true,true,true,false],
+                }
+            },
+        }
     }
 
     render() {
+        let gameControls = this.props.gameControls;
+       let insuranceStr = populateInsurance(gameControls.insurance.value);
+        console.log(insuranceStr);
+
 
         return (
             <Table
@@ -26,7 +49,7 @@ class PortfolioSummary extends Component {
                     </td>
                     <td>
                         <p style={paratext}>
-                            Bonds : $2200
+                            Bonds : {gameControls.bonds.value}
                         </p>
                     </td>
                     <td>
@@ -36,7 +59,7 @@ class PortfolioSummary extends Component {
                     </td>
                     <td>
                         <p style={paratext}>
-                            Stocks : $2200
+                            Stocks : {gameControls.stocks.value}
                         </p>
                     </td>
                 </tr>
@@ -48,7 +71,7 @@ class PortfolioSummary extends Component {
                     </td>
                     <td>
                         <p style={paratext}>
-                            Savings : $2200
+                            Savings : {gameControls.savings.value}
                         </p>
                     </td>
                     <td>
@@ -58,7 +81,7 @@ class PortfolioSummary extends Component {
                     </td>
                     <td>
                         <p style={paratext}>
-                            Insurance : $2200
+                            Insurance : {insuranceStr}
                         </p>
                     </td>
                 </tr>

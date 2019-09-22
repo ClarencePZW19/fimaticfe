@@ -3,7 +3,7 @@ import GameStart from './views/GameStart'
 import Login from "./views/Login";
 import GameEnd from "./views/GameEnd";
 import Overview from "./views/Overview";
-import ChooseAllocation from "./views/PortfolioAllocation";
+import PortfolioAllocation from "./views/PortfolioAllocation";
 import Register from "./views/Register";
 
 const routes = [
@@ -11,7 +11,7 @@ const routes = [
     { path: '/gamestart', name: 'GameStart', component: GameStart },
     { path: '/login', name: 'Login', component: Login },
     { path: '/overview', name: 'Overview', component: Overview },
-    { path: '/chooseallocation', name: 'ChooseAllocation', component: ChooseAllocation },
+    { path: '/portfolioallocation', name: 'PortfolioAllocation', component: PortfolioAllocation },
     { path: '/register', name: 'Register', component: Register },
 ];
 

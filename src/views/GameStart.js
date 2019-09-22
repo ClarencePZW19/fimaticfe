@@ -5,6 +5,7 @@ import GameSummary from "./Pages/gamesummary";
 import GamePostDecision from "./Pages/gamepostdecision";
 import GameDecision from "./Pages/gamedecision";
 import {data} from "./Data";
+import {pageComponentStyle} from "../css";
 
 
 class GameStart extends Component {
@@ -202,7 +203,7 @@ class GameStart extends Component {
         switch (stage) {
             case 1:
                 return (
-                    <div className="App">
+                    <div style={pageComponentStyle}>
                             <GameLanding
                                 nextStage={this.nextStage}
                                 episodeName = {this.state.episodeName}

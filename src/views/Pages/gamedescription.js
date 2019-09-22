@@ -7,6 +7,7 @@ import CardText from "reactstrap/es/CardText";
 import Container from "reactstrap/es/Container";
 import Col from "reactstrap/es/Col";
 import Row from "reactstrap/es/Row";
+import {headline, paratext, singlePillButtonStyle, textArea, titleStyle} from "../../css";
 
 
 class GameDescription extends Component {
@@ -19,36 +20,32 @@ class GameDescription extends Component {
     };
 
     render() {
-        const {descriptionStart, headlineStart, title,scproductName,scproductEffect} = this.props;
+        const {descriptionStart, headlineStart, title, scproductName, scproductEffect} = this.props;
         var scproductEffectStr = "";
-        if(scproductEffect%1 == 0){
+        if (scproductEffect % 1 == 0) {
             scproductEffectStr = "$" + scproductEffect.toString()
-        }else{
-            scproductEffectStr = (100 * scproductEffect).toString()  + "%"
+        } else {
+            scproductEffectStr = (100 * scproductEffect).toString() + "%"
         }
         return (
             <div>
-                <Container>
-                    <Row>
-                        <h2>{title}</h2>
-                    </Row>
-                    <br/>
-                    <Row>
-                        <h3>{headlineStart}</h3>
-                    </Row>
-                    <br/>
-                    <Row>
-                        {descriptionStart}
-                    </Row>
-                    <br/>
-                    <Row>
-                        Your {scproductName} has been affected by: {scproductEffectStr}
-                        {/*{"These are the effects that happened on your investments"}*/}
-                    </Row>
+                <div style={titleStyle}>
+                    <h3>{title}</h3>
+                </div>
 
-                    <Button color="primary"
-                            onClick={this.saveAndContinue}>Proceed</Button>
-                </Container>
+                <div style={headline}>
+                    <h4>{headlineStart}</h4>
+                </div>
+                <div style={paratext}>
+                    {descriptionStart}
+                </div>
+
+                <div style={paratext}>
+                    Your {scproductName} has been affected by: {scproductEffectStr}
+                    {/*{"These are the effects that happened on your investments"}*/}
+                </div>
+                <Button style={singlePillButtonStyle}
+                        onClick={this.saveAndContinue}>Proceed</Button>
             </div>
         )
     }

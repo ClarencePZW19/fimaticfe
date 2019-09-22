@@ -3,6 +3,9 @@ import Button from "reactstrap/es/Button";
 import Container from "reactstrap/es/Container";
 import Row from "reactstrap/es/Row";
 import Alert from "reactstrap/es/Alert";
+import {doubleButtonStyle, pageComponentStyle, singlePillButtonStyle, titleStyle} from "../../css";
+import {populateInsurance} from "../../_utils";
+import PortfolioSummary from "./PortfolioSummary";
 
 
 class ChooseAllocation extends Component {
@@ -33,6 +36,7 @@ class ChooseAllocation extends Component {
             },
         };
     }
+
     checkActionValid(updatedGameControls) {
         let savings = this.state.gameControls.savings.value;
 
@@ -41,9 +45,9 @@ class ChooseAllocation extends Component {
         console.log(updatedGameControls);
         let values = Object.values(updatedGameControls);
         let total = 0;
-        let lessThanZeroCheck  =false;
+        let lessThanZeroCheck = false;
         for (let i = 0; i < values.length - 1; i++) {
-            if(values[i].value < 0){
+            if (values[i].value < 0) {
                 lessThanZeroCheck = true;
             }
             total = total + values[i].value;
@@ -103,7 +107,7 @@ class ChooseAllocation extends Component {
             console.log(updatedControls);
             if (this.checkActionValid(updatedControls)) {
                 this.setState({
-                    error:false,
+                    error: false,
                     gameControls: updatedControls
                 });
             }
@@ -136,7 +140,7 @@ class ChooseAllocation extends Component {
                 console.log(updatedControls);
                 if (this.checkActionValid(updatedControls)) {
                     this.setState({
-                        error:false,
+                        error: false,
                         gameControls: updatedControls
                     });
                 }
@@ -147,7 +151,7 @@ class ChooseAllocation extends Component {
 
     }
 
-    toGameStart() {
+    toParGameStart() {
         let toSend = this.state.gameControls;
         this.props.history.push({pathname: "/gamestart", state: {toSend}})
     }
@@ -156,83 +160,55 @@ class ChooseAllocation extends Component {
         let {earnings, spendings} = this.state;
         // let savings = this.state.gameControls.savings.value;
         let values = Object.values(this.state.gameControls);
-        console.log(values);
-        let stocks =    values[0].value;
-        let bonds = values[1].value;
-        let savings = values[2].value;
-        let insurance = values[3].value;
 
         let error = this.state.error;
-        console.log(error);
-        return <div className="App">
-            <header className="App-header">
-                <h1>Choose Allocation</h1>
-                <Alert color="danger" isOpen={error}>
-                    Please note that you only have as much as {this.state.fixsavings} to allocate your funds to
-                </Alert>
-                <Container>
-                    <Row>
-                        <h4>Savings Value: </h4>
-                        <h4> {" $" + savings}</h4>
-                    </Row>
-                    <Row>
-                        <h4>Stocks Value: </h4>
-                        <h4> {" $" + stocks}</h4>
-                    </Row>
-                    <Row>
-                        <h4>Bonds Value : </h4>
-                        <h4> {" $" + bonds}</h4>
-                    </Row>
-                    <br/>
-                    <Row>
-                        <h6>Monthly Earnings : </h6>
-                        <h6> {" $" + earnings}</h6>
-                    </Row>
-                    <Row>
-                        <h6>Monthly Spending : </h6>
-                        <h6>{" $" + spendings}</h6>
-                    </Row>
-                    <br/>
-                    <Row>
-                        <h5> Increase or Decrease your Bond holdings : </h5>
-                    </Row>
-                    <Row>
-                        <Button size="lg" onClick={() => this.handleChange("bonds", 1)}>Increase Bonds by 5%</Button>
-                        <Button size="lg" onClick={() => this.handleChange("bonds", -1)}>Decrease Bonds by 5%</Button>
-                    </Row>
-                    <br/>
-                    <Row>
-                        <h5> Increase or Decrease your Stock holdings : </h5>
-                    </Row>
-                    <Row>
-                        <Button size="lg" onClick={() => this.handleChange("stocks", 1)}>Increase Stocks by 5%</Button>
-                        <Button size="lg" onClick={() => this.handleChange("stocks", -1)}>Decrease Stocks by 5%</Button>
-                    </Row>
-                    <br/>
-                    {/*<Row>*/}
-                    {/*    <Button size="lg" onClick={() => this.handleChange("savings", 1)}>Increase Savings by*/}
-                    {/*        5%</Button>*/}
-                    {/*    <Button size="lg" onClick={() => this.handleChange("savings", -1)}>Decrease Savings by*/}
-                    {/*        5%</Button>*/}
-                    {/*</Row>*/}
-                    <br/>
-                    <Row>
-                        <Button onClick={() => this.handleChange("insurance", 2)}>Buy Housing Insurance for
-                            $1500</Button>
-                        <Button onClick={() => this.handleChange("insurance", 3)}>Buy Travel Insurance for $500</Button>
-                        <Button onClick={() => this.handleChange("insurance", 1)}>Buy Critical Illness Insurance
-                            $2000</Button>
-                        <Button onClick={() => this.handleChange("insurance", 0)}>Buy Basic Health Insurance for
-                            $1000</Button>
-                    </Row>
-                </Container>
-                <br/>
-                <Button
-                    onClick={() => this.toGameStart()}>
+        return <div style={pageComponentStyle}>
+            <h1 style={titleStyle}>Your Holdings</h1>
+            <Alert color="danger" isOpen={error}>
+                Please note that you only have as much as {this.state.fixsavings} to allocate your funds to
+            </Alert>
 
-                    {"Proceed to Start Game"}
-                </Button>
-            </header>
+            <PortfolioSummary gameControls={this.state.gameControls}></PortfolioSummary>
+            <br/>
+
+                <h5> Increase or Decrease your Bond holdings : </h5>
+            <Row>
+                <Button style={doubleButtonStyle} onClick={() => this.handleChange("bonds", 1)}>Increase Bonds by
+                    5%</Button>
+                <Button style={doubleButtonStyle} onClick={() => this.handleChange("bonds", -1)}>Decrease Bonds by
+                    5%</Button>
+            </Row>
+
+
+                <h5> Increase or Decrease your Stock holdings : </h5>
+
+            <Row>
+                <Button style={doubleButtonStyle} onClick={() => this.handleChange("stocks", 1)}>Increase Stocks by
+                    5%</Button>
+                <Button style={doubleButtonStyle} onClick={() => this.handleChange("stocks", -1)}>Decrease Stocks by
+                    5%</Button>
+            </Row>
+            <br/>
+            <Row>
+                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 2)}>Buy Housing
+                    Insurance for
+                    $1500</Button>
+                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 3)}>Buy Travel Insurance
+                    for $500</Button>
+                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 1)}>Buy Critical Illness
+                    Insurance
+                    $2000</Button>
+                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 0)}>Buy Basic Health
+                    Insurance for
+                    $1000</Button>
+            </Row>
+
+            <br/>
+            <Button style={singlePillButtonStyle}
+                    onClick={() => this.toParGameStart()}>
+
+                {"Proceed to Start Game"}
+            </Button>
         </div>
     }
 

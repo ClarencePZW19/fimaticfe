@@ -3,6 +3,7 @@ import {Button, Card, CardHeader, CardText, CardBody} from "reactstrap";
 import Container from "reactstrap/es/Container";
 import Row from "reactstrap/es/Row";
 import Col from "reactstrap/es/Col";
+import {pageComponentStyle} from "../../css";
 
 
 class GameDecision extends Component {
@@ -31,7 +32,7 @@ class GameDecision extends Component {
         }
 
         return (
-            <div>
+            <div style={pageComponentStyle}>
                 <Container>
                     <Row>
                         {descriptionStart}

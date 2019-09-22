@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import GameLanding from "./Pages/gamelanding";
 import LoginForm from "./Components/LoginForm";
+import DbsLogo from "../assets/2_pshift_logo.png"
 class Login extends Component{
 
     constructor(props) {
@@ -16,7 +17,8 @@ class Login extends Component{
     render(){
         return <div className="App">
             <header className="App-header">
-               <LoginForm
+                <img src={DbsLogo}></img>
+                <LoginForm
                     submitForm = {this.submitForm}
                ></LoginForm>
             </header>

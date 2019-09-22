@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
 import {Button} from "reactstrap";
-import {backgroundImg, singleButtonStyle} from "../../css";
+import {
+    backgroundImg,
+    imgsinglePillButtonStyle,
+    overviewTitle,
+    singleButtonStyle,
+    singlePillButtonStyle
+} from "../../css";
 
 
 
@@ -12,8 +18,8 @@ class GameLanding extends Component {
         const {episodeName} = this.props;
         return (
             <div style={backgroundImg}>
-                <h1>{episodeName}</h1>
-                <Button style={singleButtonStyle}
+                <div style={overviewTitle}><h1>{episodeName}</h1></div>
+                <Button style={imgsinglePillButtonStyle}
                         onClick={this.saveAndContinue}>Proceed</Button>{' '}
             </div>
         )

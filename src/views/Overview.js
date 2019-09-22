@@ -1,37 +1,57 @@
 import React, {Component} from 'react';
 import {data} from "./Data";
 import Button from "reactstrap/es/Button";
-import {textArea} from "../css";
+import {withRouter} from "react-router-dom";
+import {
+    componentStyle,
+    headline, navBar,
+    pageComponentStyle,
+    paratext,
+    singleButtonStyle,
+    textArea,
+    title,
+    titleStyle
+} from "../css";
+import Navbar from "./Components/Navbar";
 
-class Overview extends Component{
+class Overview extends Component {
 
     constructor(props) {
         super(props);
     }
-    toAllocation(){
-        this.props.history.push({pathname: "/chooseallocation"})
+
+    toAllocation() {
+        this.props.history.push({pathname: "/portfolioallocation" +
+                ""})
     }
-    render(){
+
+    render() {
         const overview = data[0];
-        console.log(overview);
-        return (<div className="App">
-            <header className="App-header">
-                <div style={textArea}><h1>{overview.title}</h1></div>
+        return (
 
-                <div style = {textArea}><h2>{overview.headlineStart}</h2></div>
-                <br/>
+            <div style={pageComponentStyle}>
+                <Navbar/>
+                <div style={componentStyle}>
+                    <div style={titleStyle} ><h3>{overview.title}</h3></div>
 
-                <p>
-                    {overview.descriptionStart}
-                </p>
-                <Button
-                    onClick={()=>this.toAllocation()}>
+                    <div style={headline}><h3>{overview.headlineStart}</h3></div>
+                    <br/>
 
-                    {"Proceed to choose allocation"}
-                </Button>
-            </header>
-        </div>)
+                    <div style={paratext}>
+                    <p>
+                        {overview.descriptionStart}
+                    </p>
+                    </div>
+                    <Button style={singleButtonStyle}
+                            onClick={() => this.toAllocation()}>
+
+                        {"Proceed"}
+                    </Button>
+                </div>
+        </div>
+        )
     }
 
 }
-export default Overview
+
+export default withRouter(Overview)

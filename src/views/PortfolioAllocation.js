@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
-import Button from "reactstrap/es/Button";
-import Container from "reactstrap/es/Container";
-import Row from "reactstrap/es/Row";
-import Alert from "reactstrap/es/Alert";
+import {withRouter} from "react-router-dom";
 import ChooseAllocation from "./Components/ChooseAllocation";
 
 class PortfolioAllocation extends Component {
@@ -21,11 +18,13 @@ class PortfolioAllocation extends Component {
 
         return <div className="App">
             <header className="App-header">
-                <ChooseAllocation ></ChooseAllocation>
+                <ChooseAllocation
+                    history ={this.props.history}
+                ></ChooseAllocation>
             </header>
         </div>
     }
 
 }
 
-export default PortfolioAllocation
+export default withRouter(PortfolioAllocation)
