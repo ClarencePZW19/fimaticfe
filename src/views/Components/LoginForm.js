@@ -57,7 +57,7 @@ class LoginForm extends Component{
                     <br/>
                     <InputGroup>
                         <InputGroupText>
-                            {"Username : "}
+                            {"Username: "}
                         </InputGroupText>
 
                         <Input
@@ -72,10 +72,9 @@ class LoginForm extends Component{
 
                         ></Input>
                     </InputGroup>
-                    <br/>
                     <InputGroup>
                         <InputGroupText>
-                            {"Password : "}
+                            {"Password: "}
                         </InputGroupText>
 
                         <Input
@@ -90,7 +89,6 @@ class LoginForm extends Component{
 
                         ></Input>
                     </InputGroup>
-                    <br/>
                     <Button
                         style={singleButtonStyle}
                     >Login</Button>

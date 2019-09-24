@@ -1,28 +1,69 @@
+html, body, div, span {margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline;}
+body {line-height: 1; font-family: Helvetica, Arial, sans-serif; font-weight: 300; font-size: 16px; color: #000000; letter-spacing: normal; display: flex; flex-direction: column; min-height: 100vh; position: relative;}
+a img {border: 0}
+a:hover, a:active, button:hover, button:active {outline: 0}
+a:focus,
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+body {
+  margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+input {
+  padding: 5px;
+}
+.input-group {
+  width: 100%;
+  max-width: 500px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 10px;
+}
+button, .btn {
+  background-color: ;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
 .App {
   text-align: center;
 }
-
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
   pointer-events: none;
 }
-
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
+  background-image: url('assets/5_background.png');
+  background-size: cover;
+  background-position: center center;
 }
-
+.App-header img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 30px;
+}
+.App-header button {
+  margin-top: 20px;
+}
 .App-link {
   color: #61dafb;
 }
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

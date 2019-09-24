@@ -1,11 +1,18 @@
 import background from "../assets/8_ep2_start.png"
 
 export const singleButtonStyle = {
-    color: '#1B1C20',
-    backgroundColor: "#FFFFFF",
-    fontSize: "20px",
+    fontFamily: 'Helvetica',
+    color: '#FFF',
+    backgroundColor: "#ed1c24",
     height: "100%",
-    width: "100%"
+    width: "100%",
+    fontSize: "14px",
+    fontWeight: "600",
+    textTransform: "uppercase",
+    letterSpacing: "0.025em",
+    padding: "10px",
+    border: "none",
+    borderRadius: "5px"
 };
 
 export const singlePillButtonStyle = {
