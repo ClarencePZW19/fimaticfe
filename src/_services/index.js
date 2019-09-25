@@ -44,7 +44,9 @@ const request = (options) => {
     // if (localStorage.getItem(ACCESS_TOKEN)){
     //     headers.append('Authorization','Bearer '+ localStorage.getItem(ACCESS_TOKEN))
     // }
-    const defaults = {headers:headers};
+    const defaults = {
+        mode : 'no-cors',
+        headers:headers};
     options = Object.assign({},defaults,options);
     console.log(options.url);
     return fetch(options.url,options).then(handleResponse);
