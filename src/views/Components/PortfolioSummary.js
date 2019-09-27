@@ -38,55 +38,55 @@ class PortfolioSummary extends Component {
         console.log(insuranceStr);
 
 
-        return (<div></div>)
-            {/*<Table*/}
-            {/*    borderless={true}*/}
-            {/*>*/}
-            {/*    <tr>*/}
-            {/*        <td>*/}
-            {/*            <div>*/}
-            {/*                <img src={bonds} alt={""}></img>*/}
-            {/*            </div>*/}
-            {/*        </td>*/}
-            {/*        <td>*/}
-            {/*            <p style={paratext}>*/}
-            {/*                Bonds : $ {gameControls.bonds.value}*/}
-            {/*            </p>*/}
-            {/*        </td>*/}
-            {/*        <td>*/}
-            {/*            <div>*/}
-            {/*                <img src={stocks} alt={""}></img>*/}
-            {/*            </div>*/}
-            {/*        </td>*/}
-            {/*        <td>*/}
-            {/*            <p style={paratext}>*/}
-            {/*                Stocks : $ {gameControls.stocks.value}*/}
-            {/*            </p>*/}
-            {/*        </td>*/}
-            {/*    </tr>*/}
-            {/*    <tr>*/}
-            {/*        <td>*/}
-            {/*            <div>*/}
-            {/*                <img src={savings} alt={""}></img>*/}
-            {/*            </div>*/}
-            {/*        </td>*/}
-            {/*        <td>*/}
-            {/*            <p style={paratext}>*/}
-            {/*                Savings : $ {gameControls.savings.value}*/}
-            {/*            </p>*/}
-            {/*        </td>*/}
-            {/*        <td>*/}
-            {/*            <div>*/}
-            {/*                <img src={insurance} alt={""}></img>*/}
-            {/*            </div>*/}
-            {/*        </td>*/}
-            {/*        <td>*/}
-            {/*            <p style={paratext}>*/}
-            {/*                Insurance : {insuranceStr}*/}
-            {/*            </p>*/}
-            {/*        </td>*/}
-            {/*    </tr>*/}
-            {/*</Table>)*/}
+        return (
+            <Table
+                borderless={true}
+            >
+                <tr>
+                    <td>
+                        <div>
+                            <img src={bonds} alt={""}></img>
+                        </div>
+                    </td>
+                    <td>
+                        <p style={paratext}>
+                            Bonds : $ {gameControls.bonds.value}
+                        </p>
+                    </td>
+                    <td>
+                        <div>
+                            <img src={stocks} alt={""}></img>
+                        </div>
+                    </td>
+                    <td>
+                      <p style={paratext}>
+                            Stocks : $ {gameControls.stocks.value}
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <img src={savings} alt={""}></img>
+                        </div>
+                    </td>
+                    <td>
+                        <p style={paratext}>
+                            Savings : $ {gameControls.savings.value}
+                        </p>
+                    </td>
+                    <td>
+                        <div>
+                            <img src={insurance} alt={""}></img>
+                        </div>
+                    </td>
+                    <td>
+                        <p style={paratext}>
+                            Insurance : {insuranceStr}
+                        </p>
+                    </td>
+                </tr>
+            </Table>)
     }
 
 }

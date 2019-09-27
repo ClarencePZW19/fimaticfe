@@ -19,25 +19,25 @@ class Login extends Component{
         };
         console.log(paraObject);
 
-        localStorage.setItem('user',{
-            "id": 1,
-            "clusterID": 387,
-            "username": "angrylion",
-            "password": "qwerty123",
-            "bonds_value": 0,
-            "stocks_value": 0,
-            "savings_value": 6000,
-            "total_value": 6000,
-            "average_spendm": 700,
-            "average_earnm": 800,
-            "average_savingsm": 100,
-            "insurance": [
+        localStorage.setItem('user',JSON.stringify({
+            id: 1,
+            clusterID: 387,
+            username: "angrylion",
+            password: "qwerty123",
+            bonds_value: 0,
+            stocks_value: 0,
+            savings_value: 6000,
+            total_value: 6000,
+            average_spendm: 700,
+            average_earnm: 800,
+            average_savingsm: 100,
+            insurance: [
                 false,
                 false,
                 false,
                 false
             ]
-        });
+        }));
         this.props.history.push({pathname:"/overview"});
 
         // return Services.login(paraObject).then(result =>{

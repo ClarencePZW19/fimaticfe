@@ -33,7 +33,8 @@ class PortfolioAllocation extends Component {
     componentDidMount() {
         // console.log(JSON.parse(localStorage.getItem('user')));
         // let userData = JSON.parse(localStorage.getItem('user'));
-        let userData = localStorage.getItem('user');
+        let userData = JSON.parse(localStorage.getItem('user'));
+        // console.log(JSON.parse(userData));
         console.log(userData.username);
         console.log(userData["average_spendm"]);
         let earnings = userData["average_earnm"]
@@ -78,4 +79,4 @@ class PortfolioAllocation extends Component {
 
 }
 
-export default withRouter(PortfolioAllocation)
+export default PortfolioAllocation
