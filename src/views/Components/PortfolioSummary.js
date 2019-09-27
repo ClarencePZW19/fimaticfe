@@ -42,6 +42,7 @@ class PortfolioSummary extends Component {
             <Table
                 borderless={true}
             >
+                <tbody>
                 <tr>
                     <td>
                         <div>
@@ -86,6 +87,7 @@ class PortfolioSummary extends Component {
                         </p>
                     </td>
                 </tr>
+                </tbody>
             </Table>)
     }
 

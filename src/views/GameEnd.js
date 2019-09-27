@@ -15,7 +15,7 @@ class GameEnd extends Component {
 
                     <h1>GAME OVER</h1>
 
-                    <h2>DO NOT HAVE 0 SAVINGS </h2>
+                    <h2>DO NOT LEAVE 0 SAVINGS </h2>
                 </header>
             </div>
         )
