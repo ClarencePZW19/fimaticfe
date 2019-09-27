@@ -190,7 +190,7 @@ class ChooseAllocation extends Component {
         // let {earnings, spendings} = this.state;
         // // let savings = this.state.gameControls.savings.value;
         // let values = Object.values(this.state.gameControls);
-
+        console.log(this.state.gameControls);
         let error = this.state.error;
         return <div style={pageComponentStyle}>
             <h1 style={titleStyle}>Your Holdings</h1>

@@ -31,8 +31,10 @@ class PortfolioAllocation extends Component {
         }
     }
     componentDidMount() {
-        let userData = JSON.parse(localStorage.getItem('user'));
-        console.log(userData);
+        // console.log(JSON.parse(localStorage.getItem('user')));
+        // let userData = JSON.parse(localStorage.getItem('user'));
+        let userData = localStorage.getItem('user');
+        console.log(userData.username);
         console.log(userData["average_spendm"]);
         let earnings = userData["average_earnm"]
         let gameControls = {
