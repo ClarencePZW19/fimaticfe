@@ -3,19 +3,19 @@ export function populateInsurance(booleanArray) {
     let txt = "";
     let count = 1;
     if(booleanArray[0]){
-        txt = txt + count.toString() + ". Basic Health Insurance \n";
+        txt = txt + count.toString() + ". Basic Health Insurance " + "\n";
         count++;
     }
     if(booleanArray[1]){
-        txt = "\n" + txt + count.toString() + ". Critical Illness Insurance \n";
+        txt = "\n" + txt + count.toString() + ". Critical Illness Insurance" + "\n";
         count++;
     }
     if(booleanArray[2]){
-        txt = "\n" +txt + count.toString() + ". Housing Insurance \n";
+        txt = "\n" +txt + count.toString() + ". Housing Insurance " + "\n";
         count++;
     }
     if(booleanArray[3]){
-        txt ="\n" + txt + count.toString() + ". Travel Insurance \n";
+        txt ="\n" + txt + count.toString() + ". Travel Insurance" + "\n";
     }
     return txt
 

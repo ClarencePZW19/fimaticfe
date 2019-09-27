@@ -27,7 +27,14 @@ input {
   margin-bottom: 10px;
 }
 button, .btn {
-  background-color: ;
+  color: #FFFFFF;
+  background-color: rgb(237, 28, 36);
+  font-size: 16px;
+  width: 50%;
+  border: 2px solid rgb(40, 44, 52);
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -48,7 +55,7 @@ code {
   align-items: center;
   justify-content: center;
   color: white;
-  background-image: url('assets/5_background.png');
+  background-color: rgb(40, 44, 52);
   background-size: cover;
   background-position: center center;
 }
@@ -71,4 +78,7 @@ code {
   to {
     transform: rotate(360deg);
   }
+}
+table {
+  margin: 0 auto;
 }

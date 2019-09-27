@@ -3,7 +3,7 @@ import Button from "reactstrap/es/Button";
 import Container from "reactstrap/es/Container";
 import Row from "reactstrap/es/Row";
 import Alert from "reactstrap/es/Alert";
-import {doubleButtonStyle, pageComponentStyle, singlePillButtonStyle, titleStyle} from "../../css";
+import {doubleButtonStyle, pageComponentStyle, singlePillButtonStyle, titleStyle, purchasebuttonstylered, purchasebuttonstylegreen} from "../../css";
 import {populateInsurance} from "../../_utils";
 import PortfolioSummary from "./PortfolioSummary";
 
@@ -203,9 +203,9 @@ class ChooseAllocation extends Component {
 
                 <h5> Increase or Decrease your Bond holdings : </h5>
             <Row>
-                <Button style={doubleButtonStyle} onClick={() => this.handleChange("bonds", 1)}>Increase Bonds by
+                <Button style={purchasebuttonstylegreen} onClick={() => this.handleChange("bonds", 1)}>Increase Bonds by
                     5%</Button>
-                <Button style={doubleButtonStyle} onClick={() => this.handleChange("bonds", -1)}>Decrease Bonds by
+                <Button style={purchasebuttonstylered} onClick={() => this.handleChange("bonds", -1)}>Decrease Bonds by
                     5%</Button>
             </Row>
 
@@ -213,9 +213,9 @@ class ChooseAllocation extends Component {
                 <h5> Increase or Decrease your Stock holdings : </h5>
 
             <Row>
-                <Button style={doubleButtonStyle} onClick={() => this.handleChange("stocks", 1)}>Increase Stocks by
+                <Button style={purchasebuttonstylegreen} onClick={() => this.handleChange("stocks", 1)}>Increase Stocks by
                     5%</Button>
-                <Button style={doubleButtonStyle} onClick={() => this.handleChange("stocks", -1)}>Decrease Stocks by
+                <Button style={purchasebuttonstylered} onClick={() => this.handleChange("stocks", -1)}>Decrease Stocks by
                     5%</Button>
             </Row>
             <br/>

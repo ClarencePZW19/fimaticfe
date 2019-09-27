@@ -5,23 +5,27 @@ export const singleButtonStyle = {
     color: '#FFF',
     backgroundColor: "#ed1c24",
     height: "100%",
-    width: "100%",
+    width: "80%",
     fontSize: "14px",
     fontWeight: "600",
     textTransform: "uppercase",
     letterSpacing: "0.025em",
     padding: "10px",
     border: "none",
-    borderRadius: "5px"
+    borderRadius: "5px",
+    marginBottom: "10px"
 };
 
 export const singlePillButtonStyle = {
-    color: '#1B1C20',
-    backgroundColor: "#FFFFFF",
-    fontSize: "20px",
+    color: '#FFF',
+    backgroundColor: "green",
+    fontSize: "18px",
+    fontWeight: "bold",
     width: "80%",
-    borderRadius: "16px"
-
+    borderRadius: "16px",
+    border: "none",
+    padding: "10px",
+    boxSizing: "border-box"
 };
 
 export const imgsinglePillButtonStyle = {
@@ -44,19 +48,45 @@ export const overviewTitle = {
     marginTop:"20px"
 }
 export const doubleButtonStyle = {
-    color: '#1B1C20',
-    backgroundColor: "#FFFFFF",
+    color: '#FFFFFF',
+    backgroundColor: "rgb(131, 30, 18)",
     fontSize: "12px",
     height: "80px",
+    width: "20%",
+    border: "2px solid rgb(40, 44, 52)",
+    fontWeight: "bold",
+    verticalAlign: "top",
+    borderRadius: "5px"
+}
+export const purchasebuttonstylered = {
+    color: '#FFFFFF',
+    backgroundColor: "rgb(237, 28, 36)",
+    fontSize: "15px",
+    height: "80px",
     width: "50%",
-};
+    border: "2px solid rgb(40, 44, 52)",
+    fontWeight: "bold",
+    verticalAlign: "top",
+    borderRadius: "5px"
+}
+
+export const purchasebuttonstylegreen = {
+    color: '#FFFFFF',
+    backgroundColor: "green",
+    fontSize: "15px",
+    height: "80px",
+    width: "50%",
+    border: "2px solid rgb(40, 44, 52)",
+    fontWeight: "bold",
+    verticalAlign: "top",
+    borderRadius: "5px"
+}
 
 export const profileImg = {
     borderRadius: "50%",
 };
 
 export const backgroundImg = {
-    backgroundImage: `url(${background})`,
     minHeight: "100vh",
     height: "100%",
     width: "100%,",

@@ -65,7 +65,8 @@ class ProductRecommendation extends Component {
         console.log(this.state.result[0].zero);
         return (<div className="App">
             <header className="App-header">
-                <h1>BUY DBS PRODUCTS</h1>
+                <h1>Thanks for playing the game!</h1>
+                <h2>Here are some personalized products just for you!</h2>
                 <Button style={singleButtonStyle}
                         href={this.state.result[1].zero}>
                     {this.state.result[0].zero}
@@ -78,7 +79,7 @@ class ProductRecommendation extends Component {
                         href={this.state.result[1].two}>
                     {this.state.result[0].two}
                 </Button>
-                <Button style={singlePillButtonStyle} onClick={()=> this.toPortfolio()}>Back to Portfolio Allocation</Button>
+                <Button style={singlePillButtonStyle} onClick={()=> this.toPortfolio()}>Lets try again!</Button>
             </header>
         </div>)
     }
