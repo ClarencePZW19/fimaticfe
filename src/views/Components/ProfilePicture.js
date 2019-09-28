@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import profile from "../../assets/5_profile.png"
-import {profileImg} from "../../css";
+import {ProfileImg} from "../../css";
 
 
 class ProfilePicture extends Component {
 
     render() {
         return (
-            <div style={profileImg}>
+            <div style={ProfileImg}>
                 <img src={profile}></img>
             </div>
         )

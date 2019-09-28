@@ -3,7 +3,7 @@ import Button from "reactstrap/es/Button";
 import Container from "reactstrap/es/Container";
 import Row from "reactstrap/es/Row";
 import Alert from "reactstrap/es/Alert";
-import {doubleButtonStyle, pageComponentStyle, singlePillButtonStyle, titleStyle, purchasebuttonstylered, purchasebuttonstylegreen} from "../../css";
+import {doubleButtonStyle, pageComponentStyle, singlePillButtonStyle, allocationStyle, purchasebuttonstylered, purchasebuttonstylegreen} from "../../css";
 import {populateInsurance} from "../../_utils";
 import PortfolioSummary from "./PortfolioSummary";
 
@@ -193,7 +193,7 @@ class ChooseAllocation extends Component {
         console.log(this.state.gameControls);
         let error = this.state.error;
         return <div style={pageComponentStyle}>
-            <h1 style={titleStyle}>Your Holdings</h1>
+            <h1 style={allocationStyle}>Your Financial Profile</h1>
             <Alert color="danger" isOpen={error}>
                 Please note that you only have as much as {this.state.fixsavings} to allocate your funds to
             </Alert>
@@ -208,8 +208,6 @@ class ChooseAllocation extends Component {
                 <Button style={purchasebuttonstylered} onClick={() => this.handleChange("bonds", -1)}>Decrease Bonds by
                     5%</Button>
             </Row>
-
-
                 <h5> Increase or Decrease your Stock holdings : </h5>
 
             <Row>
@@ -218,18 +216,15 @@ class ChooseAllocation extends Component {
                 <Button style={purchasebuttonstylered} onClick={() => this.handleChange("stocks", -1)}>Decrease Stocks by
                     5%</Button>
             </Row>
-            <br/>
+                <h5> Choose which insurance you want to buy : </h5>
             <Row>
-                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 2)}>Buy Housing
-                    Insurance for
+                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 2)}> Housing Coverage
                     $1500</Button>
-                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 3)}>Buy Travel Insurance
-                    for $500</Button>
-                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 1)}>Buy Critical Illness
-                    Insurance
+                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 3)}> Travel Coverage
+                     $500</Button>
+                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 1)}> Critical Illness
                     $2000</Button>
-                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 0)}>Buy Basic Health
-                    Insurance for
+                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 0)}> Basic Health
                     $1000</Button>
             </Row>
 

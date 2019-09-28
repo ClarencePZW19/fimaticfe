@@ -54,6 +54,8 @@ class PortfolioAllocation extends Component {
                 networth: {
                     value:userData["total_value"]
                 }
+            
+            
             }
 
         this.setState({
@@ -73,6 +75,7 @@ class PortfolioAllocation extends Component {
                     gameControls = {this.state.gameControls}
                     networth={this.state.networth}
                 ></ChooseAllocation>
+                <h1> </h1>
             </header>
         </div>
     }

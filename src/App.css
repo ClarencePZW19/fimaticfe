@@ -63,7 +63,7 @@ code {
   width: 100%;
   max-width: 300px;
   height: auto;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
 }
 .App-header button {
   margin-top: 20px;

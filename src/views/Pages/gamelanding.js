@@ -18,7 +18,9 @@ class GameLanding extends Component {
         const {episodeName} = this.props;
         return (
             <div style={backgroundImg}>
-                <div style={overviewTitle}><h1>{episodeName}</h1></div>
+                <div style={overviewTitle}>
+                    <h1>{episodeName}</h1></div>
+                    
                 <Button style={imgsinglePillButtonStyle}
                         onClick={this.saveAndContinue}>Proceed</Button>{' '}
             </div>

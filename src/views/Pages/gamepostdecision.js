@@ -3,6 +3,7 @@ import {Button} from "reactstrap";
 import Container from "reactstrap/es/Container";
 import Row from "reactstrap/es/Row";
 import PortfolioSummary from "../Components/PortfolioSummary";
+import {dividerText, headline, OverviewStyle} from "../../css";
 
 class GamePostDecision extends Component {
     saveAndContinue = () => this.props.nextStage();
@@ -15,27 +16,25 @@ class GamePostDecision extends Component {
             selectedEffectstr = (100 * selectedEffect).toString()  + "%"
         }
         return (
-            <div >
-
+            <div style={dividerText}>
                 <Container>
+                    <div style = {headline}>
                     <Row>
                         <h2>{selectedHeadline}</h2>
-                    </Row>
+                    </Row></div>
                     <br/>
-                    <Row>
-                        <h3>Headline</h3>
-                    </Row>
-                    <br/>
-
+                    <div style = {headline}>
                     <Row>
                             {selectedDescription}
                     </Row>
+                    </div>
                     <br/>
                     <Row>
                         Your {selectedProduct} has been affected by: {selectedEffectstr}
                     </Row>
+                    <div style = {headline}>
                     <Button
-                        onClick={this.saveAndContinue}> Proceed </Button>
+                        onClick={this.saveAndContinue}> Proceed </Button></div>
                 </Container>
             </div>
         )
