@@ -16,6 +16,22 @@ export const singleButtonStyle = {
     marginBottom: "10px"
 };
 
+export const Recommendationbuttonstyle = {
+    fontFamily: 'Helvetica',
+    color: '#FFF',
+    backgroundColor: "#BF9B30",
+    height: "200%",
+    width: "60%",
+    fontSize: "14px",
+    fontWeight: "600",
+    textTransform: "uppercase",
+    letterSpacing: "0.025em",
+    padding: "20px",
+    border: "none",
+    borderRadius: "5px",
+    marginBottom: "20px"
+};
+
 export const singlePillButtonStyle = {
     color: '#FFF',
     backgroundColor: "green",
@@ -83,7 +99,9 @@ export const purchasebuttonstylegreen = {
 }
 
 export const profileImg = {
-    borderRadius: "50%",
+    borderRadius: "100%",
+    height: "20%",
+    width: "20%,",
 };
 
 export const backgroundImg = {

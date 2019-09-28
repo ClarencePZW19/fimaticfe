@@ -31,6 +31,7 @@ class GameDecision extends Component {
 
         return (
             <div style={pageComponentStyle}>
+           
                 <PortfolioSummary gameControls={this.props.gameControls}/>
                 <Container>
                     <Row>

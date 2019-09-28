@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Services} from "../_services";
 import {calculateNetworth} from "../_utils";
 import Button from "reactstrap/es/Button";
-import {singleButtonStyle, singlePillButtonStyle} from "../css";
+import {Recommendationbuttonstyle, singlePillButtonStyle} from "../css";
 
 class ProductRecommendation extends Component {
 
@@ -67,15 +67,16 @@ class ProductRecommendation extends Component {
             <header className="App-header">
                 <h1>Thanks for playing the game!</h1>
                 <h2>Here are some personalized products just for you!</h2>
-                <Button style={singleButtonStyle}
+                <h2> </h2>
+                <Button style={Recommendationbuttonstyle}
                         href={this.state.result[1].zero}>
                     {this.state.result[0].zero}
                 </Button>
-                <Button style={singleButtonStyle}
+                <Button style={Recommendationbuttonstyle}
                         href={this.state.result[1].one}>
                     {this.state.result[0].one}
                 </Button>
-                <Button style={singleButtonStyle}
+                <Button style={Recommendationbuttonstyle}
                         href={this.state.result[1].two}>
                     {this.state.result[0].two}
                 </Button>
