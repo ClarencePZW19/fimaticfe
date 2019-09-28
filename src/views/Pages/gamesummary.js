@@ -11,8 +11,6 @@ import Col from "reactstrap/es/Col";
 class GameSummary extends Component {
     postGameSummaryStage = this.props.postGameSummaryStage;
     render() {
-        let spendings = 1000;
-        let earnings = 3500;
         console.log(this.props.gameControls);
         return (
             <div>

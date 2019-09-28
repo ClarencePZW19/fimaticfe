@@ -25,7 +25,7 @@ class GameDescription extends Component {
         if (scproductEffect % 1 == 0) {
             scproductEffectStr = "$" + scproductEffect.toString()
         } else {
-            scproductEffectStr = (100 * scproductEffect).toString() + "%"
+            scproductEffectStr = (100 * scproductEffect).toFixed(2).toString() + "%"
         }
         return (
             <div>

@@ -13,7 +13,7 @@ class GamePostDecision extends Component {
         if(selectedEffect%1 == 0){
             selectedEffectstr = "$" + selectedEffect.toString()
         }else{
-            selectedEffectstr = (100 * selectedEffect).toString()  + "%"
+            selectedEffectstr = (100 * selectedEffect).toFixed(2).toString()  + "%"
         }
         return (
             <div style={dividerText}>
