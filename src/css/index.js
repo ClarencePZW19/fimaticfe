@@ -50,7 +50,7 @@ export const overviewTitle = {
 export const doubleButtonStyle = {
     color: '#FFFFFF',
     backgroundColor: "rgb(131, 30, 18)",
-    fontSize: "12px",
+    fontSize: "10px",
     height: "80px",
     width: "20%",
     border: "2px solid rgb(40, 44, 52)",
