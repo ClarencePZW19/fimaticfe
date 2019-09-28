@@ -200,16 +200,19 @@ class GameStart extends Component {
     handleChange = (e) => {
         let name;
         let effect;
-
-        if(e!=undefined || e != 4){
+        console.log(e);
+        if(e!=undefined && e != 4){
+            console.log(e);
             name = this.state.scenarioData.products[e];
             effect = this.state.scenarioData.effects[e];
+            this.editGameActionControls(name,effect);
         }else{
+            this.postDecisionStage();
             name = "";
             effect = 0;
         }
 
-        this.editGameActionControls(name,effect);
+
     };
 
     editGameControls(name, effect){
