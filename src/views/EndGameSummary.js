@@ -41,7 +41,6 @@ class EndGameSummary extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-
                     <h1>GREAT GAME!</h1>
                     <PortfolioSummary gameControls = {this.state.gameControls}/>
                     <h3>Score for Stocks: {this.state.ipoints} %</h3>

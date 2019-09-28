@@ -16,9 +16,25 @@ export const singleButtonStyle = {
     marginBottom: "10px"
 };
 
-export const singlePillButtonStyle = {
+export const Recommendationbuttonstyle = {
+    fontFamily: 'Helvetica',
     color: '#FFF',
-    backgroundColor: "green",
+    backgroundColor: "#BF9B30",
+    height: "200%",
+    width: "60%",
+    fontSize: "14px",
+    fontWeight: "600",
+    textTransform: "uppercase",
+    letterSpacing: "0.025em",
+    padding: "20px",
+    border: "none",
+    borderRadius: "5px",
+    marginBottom: "20px"
+};
+
+export const singlePillButtonStyle = {
+    color: '#000000',
+    backgroundColor: "#FFFF",
     fontSize: "18px",
     fontWeight: "bold",
     width: "80%",
@@ -52,7 +68,7 @@ export const doubleButtonStyle = {
     backgroundColor: "rgb(131, 30, 18)",
     fontSize: "10px",
     height: "80px",
-    width: "20%",
+    width: "25%",
     border: "2px solid rgb(40, 44, 52)",
     fontWeight: "bold",
     verticalAlign: "top",
@@ -83,7 +99,11 @@ export const purchasebuttonstylegreen = {
 }
 
 export const profileImg = {
-    borderRadius: "50%",
+    borderRadius: "10%",
+    height: "100%",
+    width: "100%,",
+    maxHeight: "60px",
+    alignItems: 'left',
 };
 
 export const backgroundImg = {
@@ -94,25 +114,78 @@ export const backgroundImg = {
     backgroundRepeat: 'no-repeat',
     margin: "0px"
 };
+export const ProfileAlignmentStyle = {
+    horizontalAlign: "center",
+    verticalAlign: "center"
+};
+
+export const iconImg = {
+    maxHeight: "50px",
+    maxWidth: "50px",
+    verticalAlign: "center",
+    horizontalAlign: "center",
+};
+
+export const ProfileImg = {
+    display: "inline-block",
+  verticalAlign: "middle",
+  position: "relative",
+  maxHeight: "120px",
+    maxWidth: "120px",
+};
 
 export const titleStyle = {
     backgroundColor: "#831E12",
-    padding: "10px 0px 10px 0px",
-    margin: "0vh 0vh 20vh 0vh",
-    fontSize: "calc(10px + 2vmin)",
-    borderRadius: "16px",
+    padding: "10px 0px 1px 0px",
+    margin: "0vh 0vh 10vh 0vh",
+    fontSize: "calc(15px + 2vmin)",
+    verticalAlign: 'top',
+    // borderRadius: "16px",
     width:"100%"
 };
+
+export const allocationStyle = {
+    backgroundColor: "#CC2E1D",
+    padding: "20px 0px 20px 0px",
+    margin: "0vh 0vh 10vh 0vh",
+    fontSize: "calc(15px + 2vmin)",
+    verticalAlign: 'top',
+    // borderRadius: "16px",
+    width:"100%"
+};
+
+export const OverviewStyle = {
+    backgroundColor: "#344856",
+    padding: "0px 0px 0px 0px",
+    margin: "0vh 0vh 0vh 0vh",
+    fontSize: "calc(15px + 2vmin)",
+    borderRadius: "5px",
+    verticalAlign: 'top',
+    width:"60%"
+};
+
+
 export const headline = {
-    padding: "10px 0px 10px 0px",
-    margin: "0vh 0vh 5vh 0vh",
+    padding: "10px 0px 5px 0px",
+    margin: "0vh 0vh 2vh 0vh",
     fontSize: "calc(10px + 2vmin)",
     borderRadius: "16px"
 };
 
 export const paratext = {
     color: "#FFFFFF",
-    margin: "0vh 0vh 5vh 0vh",
+    margin: "0vh 0vh 1vh 0vh",
+    position: "relative",
+};
+
+export const simplediv = {
+    color: "#FFFFFF",
+    margin: "0px 0px 20px 0px",
+};
+
+export const dividerText = {
+    color: "#FFFFFF",
+    margin: "0px 15px 40px 15px",
 };
 
 export const textArea = {
@@ -140,5 +213,6 @@ export const pageComponentStyle = {
     textAlign: 'center',
     justifyContent: 'center',
     fontSize: "calc(10px + 2vmin)",
+    margin: "0px 5px 0px 5px",
     color: "white"
 };

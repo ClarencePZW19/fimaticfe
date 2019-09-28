@@ -5,37 +5,29 @@ import Row from "reactstrap/es/Row";
 import ChooseAllocation from "../Components/ChooseAllocation";
 import PortfolioSummary from "../Components/PortfolioSummary";
 import ProfilePicture from "../Components/ProfilePicture";
-import {singleButtonStyle, textArea} from "../../css";
+import {singleButtonStyle, textArea, ProfileAlignmentStyle} from "../../css";
 import Col from "reactstrap/es/Col";
 
 class GameSummary extends Component {
     postGameSummaryStage = this.props.postGameSummaryStage;
-
     render() {
         let spendings = 1000;
         let earnings = 3500;
         console.log(this.props.gameControls);
         return (
-
-
-
             <div>
                 <Container>
+                    <Col md = "auto">
                     <h2>End of month Summary</h2>
-                    <div style = {textArea}>
-                    <Row>
-                        <Col>
-                            <ProfilePicture/>
-                        </Col>
-                        <Col>
-                            <h4>{JSON.parse(localStorage.getItem('user')).username.toUpperCase()}</h4>
+                        <div style = {ProfileAlignmentStyle}>
+                            <ProfilePicture/></div>
+                            <div><h3>{JSON.parse(localStorage.getItem('user')).username.toUpperCase()}</h3>
                             {/*<p>Monthly Earnings: {earnings}</p>*/}
                             {/*<p>Monthly Spending: {spendings}</p>*/}
-                        </Col>
-                    </Row>
-                    </div>
+                        </div>
                     <PortfolioSummary gameControls={this.props.gameControls}/>
                     {/*<ChooseAllocation></ChooseAllocation>*/}
+                    </Col>
                 </Container>
                 <Button style={singleButtonStyle} onClick={this.postGameSummaryStage}>Proceed to next month</Button>
             </div>

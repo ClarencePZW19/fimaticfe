@@ -3,7 +3,7 @@ import {Button, Card, CardHeader, CardText, CardBody} from "reactstrap";
 import Container from "reactstrap/es/Container";
 import Row from "reactstrap/es/Row";
 import Col from "reactstrap/es/Col";
-import {pageComponentStyle} from "../../css";
+import {pageComponentStyle, dividerText, titleStyle} from "../../css";
 import PortfolioSummary from "../Components/PortfolioSummary";
 
 
@@ -30,16 +30,17 @@ class GameDecision extends Component {
         }
 
         return (
-            <div style={pageComponentStyle}>
+            <div style={dividerText}>
+                <h1>Time to choose</h1>
                 <PortfolioSummary gameControls={this.props.gameControls}/>
                 <Container>
                     <Row>
                         {descriptionStart}
                     </Row>
                     <Row>
-                        <p>
+                        <h4>
                             What would you do?
-                        </p>
+                        </h4>
                     </Row>
                     <Row>
                         <Col>

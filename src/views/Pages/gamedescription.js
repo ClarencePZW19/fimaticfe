@@ -7,9 +7,8 @@ import CardText from "reactstrap/es/CardText";
 import Container from "reactstrap/es/Container";
 import Col from "reactstrap/es/Col";
 import Row from "reactstrap/es/Row";
-import {headline, paratext, singlePillButtonStyle, textArea, titleStyle} from "../../css";
+import {singlePillButtonStyle, titleStyle, simplediv, dividerText} from "../../css";
 import PortfolioSummary from "../Components/PortfolioSummary";
-
 
 class GameDescription extends Component {
 
@@ -30,24 +29,23 @@ class GameDescription extends Component {
         }
         return (
             <div>
-
                 <div style={titleStyle}>
                     <h3>{title}</h3>
                 </div>
                 <PortfolioSummary gameControls={this.props.gameControls}/>
-                <div style={headline}>
+                <div style={simplediv}>
                     <h4>{headlineStart}</h4>
                 </div>
-                <div style={paratext}>
+                <div style={dividerText}>
                     {descriptionStart}
                 </div>
-
-                <div style={paratext}>
+                <div style={dividerText}>
                     Your {scproductName} has been affected by: {scproductEffectStr}
                     {/*{"These are the effects that happened on your investments"}*/}
                 </div>
                 <Button style={singlePillButtonStyle}
                         onClick={this.saveAndContinue}>Proceed</Button>
+                <h1></h1>
             </div>
         )
     }

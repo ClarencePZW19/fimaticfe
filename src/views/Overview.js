@@ -10,7 +10,9 @@ import {
     singleButtonStyle,
     textArea,
     title,
-    titleStyle
+    titleStyle,
+    dividerText,
+    OverviewStyle,
 } from "../css";
 import Navbar from "./Components/Navbar";
 import {Services} from "../_services";
@@ -49,23 +51,18 @@ class Overview extends Component {
         console.log(overview);
         // console.log(data)
         return (
-
             <div style={pageComponentStyle}>
-                <Navbar/>
-                <div style={componentStyle}>
-                    <div style={titleStyle} ><h3>{overview.title}</h3></div>
-
+                <div style={OverviewStyle} ><h3>{overview.title}</h3></div>
+                
+                <div style={dividerText}>
                     <div style={headline}><h3>{overview.headlineStart}</h3></div>
-                    <br/>
-
-                    <div style={paratext}>
+                    <div style={dividerText}>
                     <p>
                         {overview.descriptionStart}
                     </p>
                     </div>
                     <Button style={singleButtonStyle}
                             onClick={() => this.toAllocation()}>
-
                         {"Proceed"}
                     </Button>
                 </div>
