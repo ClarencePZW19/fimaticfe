@@ -19,13 +19,7 @@ export function populateInsurance(booleanArray) {
     }
     return txt
 
-    // <Button onClick={() => this.handleChange("insurance", 2)}>Buy Housing Insurance for
-    //     $1500</Button>
-    //     <Button onClick={() => this.handleChange("insurance", 3)}>Buy Travel Insurance for $500</Button>
-    //     <Button onClick={() => this.handleChange("insurance", 1)}>Buy Critical Illness Insurance
-    // $2000</Button>
-    // <Button onClick={() => this.handleChange("insurance", 0)}>Buy Basic Health Insurance for
-    //     $1000</Button>
+
 }
 export function calculateNetworth(gameControls){
 

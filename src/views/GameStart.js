@@ -19,57 +19,60 @@ class GameStart extends Component {
 
             stage: 1,
             // first Scenario
-            scenarioId:1,
+            scenarioId: 1,
             pivotNum: 1,
-            step:1,
-            count:1,
-            earnings:3000,
-            spendings:1800,
-            gameControls:{
-                stocks:{
-                    value:1000.0,
+            step: 1,
+            count: 1,
+            earnings: 3000,
+            spendings: 1800,
+            gameControls: {
+                stocks: {
+                    value: 1000.0,
                 },
-                bonds:{
-                    value:3500.0,
+                bonds: {
+                    value: 3500.0,
                 },
-                savings:{
-                    value:1000.0,
+                savings: {
+                    value: 1000.0,
                 },
-                insurance:{
-                    value:[],
+                insurance: {
+                    value: [],
                 },
-
+                networth:{
+                    value:0
+                }
 
             },
-            scenarioData:{
-                episodeName:""
+            scenarioData: {
+                episodeName: ""
             },
-            investmentsscore:0,
-            savingsscore:0,
-            bondsscore:0,
-            savingscount:0,
-            bondscount:0,
-            investmentscount:0,
-
+            investmentsscore: 0,
+            savingsscore: 0,
+            bondsscore: 0,
+            savingscount: 0,
+            bondscount: 0,
+            investmentscount: 0,
 
 
         }
     }
-    checkActionValid(){
+
+    checkActionValid() {
         let savings = this.state.gameControls.savings.value;
-        if(savings<=0){
+        if (savings <= 0) {
             console.log("hello");
             return false;
-        }else{
+        } else {
             return true;
         }
         //check isf savings reaches 0
     }
+
     nextStage = () => {
         const {stage} = this.state;
-        if(stage == 2){
+        if (stage == 2) {
             //
-            this.editGameControls(this.state.scenarioData.scenarioProduct,this.state.scenarioData.scenarioEffect)
+            this.editGameControls(this.state.scenarioData.scenarioProduct, this.state.scenarioData.scenarioEffect)
         }
         this.setState({
             stage: stage + 1
@@ -87,14 +90,14 @@ class GameStart extends Component {
         let desc;
         let headline;
 
-        if(val<=this.state.outcomeProb){
-            name =  this.state.scenarioData.outcomeProductOne;
+        if (val <= this.state.outcomeProb) {
+            name = this.state.scenarioData.outcomeProductOne;
             effect = this.state.scenarioData.outcomeEffectOne;
             headline = this.state.scenarioData.headlineOne;
             desc = this.state.scenarioData.descriptionOne;
 
-        }else{
-            name =  this.state.scenarioData.outcomeProductOne;
+        } else {
+            name = this.state.scenarioData.outcomeProductOne;
             effect = this.state.scenarioData.outcomeEffectOne;
             headline = this.state.scenarioData.headlineTwo;
             desc = this.state.scenarioData.descriptionTwo;
@@ -102,23 +105,23 @@ class GameStart extends Component {
         //
         console.log(name);
         console.log(effect);
-        this.editGameControls(name,effect);
+        this.editGameControls(name, effect);
         this.setState({
-            selectedHeadline : headline,
-            selectedDescription : desc,
-            selectedProduct : name,
-            selectedEffect  : effect,
+            selectedHeadline: headline,
+            selectedDescription: desc,
+            selectedProduct: name,
+            selectedEffect: effect,
             stage: stage + 1
 
         })
     };
 
-    postGameSummaryStage = () =>{
-        const{stage} = this.state;
+    postGameSummaryStage = () => {
+        const {stage} = this.state;
         let count = this.state.count + 1;
         let state = this.state;
-        if(count > 5){
-            this.props.history.push({pathname: "/endgamesummary",state: {state}});
+        if (count > 5) {
+            this.props.history.push({pathname: "/endgamesummary", state: {state}});
 
         }
 
@@ -127,37 +130,38 @@ class GameStart extends Component {
         this.setState({
 
             stage: 2,
-            count:count
+            count: count
         })
         //reload state with new index
 
     };
+
     componentDidMount() {
         // import the index
 
         let gameControls = this.props.location.state.toSend;
-
+        console.log(gameControls);
         let userData = JSON.parse(localStorage.getItem('user'));
 
-             let networth = calculateNetworth(gameControls);
+        let networth = calculateNetworth(gameControls);
 
         let scObject = {
-            savings:gameControls.savings.value,
-            stocks:gameControls.stocks.value,
-            bonds:gameControls.bonds.value,
+            savings: gameControls.savings.value,
+            stocks: gameControls.stocks.value,
+            bonds: gameControls.bonds.value,
             scenarioId: this.state.scenarioId,
-            userId : userData.id,
-            insurance :gameControls.insurance.value,
-            networth : networth,
+            userId: userData.id,
+            insurance: gameControls.insurance.value,
+            networth: networth,
         };
         console.log(scObject);
         let scenarioData;
-        Services.getScenario(scObject).then(result =>{
+        Services.getScenario(scObject).then(result => {
 
             scenarioData = result;
             this.setState({
-                gameControls:gameControls,
-                scenarioData:scenarioData,
+                gameControls: gameControls,
+                scenarioData: scenarioData,
 
             })
         }).catch(error => {
@@ -166,30 +170,31 @@ class GameStart extends Component {
         });
 
     }
-    updateComponent(){
+
+    updateComponent() {
         let gameControls = this.state.gameControls;
 
         let userData = JSON.parse(localStorage.getItem('user'));
 
         let networth = calculateNetworth(gameControls);
         let scObject = {
-            savings:gameControls.savings.value,
-            stocks:gameControls.stocks.value,
-            bonds:gameControls.bonds.value,
+            savings: gameControls.savings.value,
+            stocks: gameControls.stocks.value,
+            bonds: gameControls.bonds.value,
             scenarioId: this.state.scenarioId,
-            userId : userData.id,
-            insurance :gameControls.insurance.value,
-            networth : networth,
+            userId: userData.id,
+            insurance: gameControls.insurance.value,
+            networth: networth,
         };
         console.log(scObject);
         let scenarioData;
-        Services.getScenario(scObject).then(result =>{
+        Services.getScenario(scObject).then(result => {
 
             scenarioData = result;
 
             this.setState({
-                gameControls:gameControls,
-                scenarioData:scenarioData,
+                gameControls: gameControls,
+                scenarioData: scenarioData,
 
             })
         }).catch(error => {
@@ -197,16 +202,17 @@ class GameStart extends Component {
 
         });
     }
+
     handleChange = (e) => {
         let name;
         let effect;
         console.log(e);
-        if(e!=undefined && e != 4){
+        if (e != undefined && e != 4) {
             console.log(e);
             name = this.state.scenarioData.products[e];
             effect = this.state.scenarioData.effects[e];
-            this.editGameActionControls(name,effect);
-        }else{
+            this.editGameActionControls(name, effect);
+        } else {
             this.postDecisionStage();
             name = "";
             effect = 0;
@@ -215,7 +221,7 @@ class GameStart extends Component {
 
     };
 
-    editGameControls(name, effect){
+    editGameControls(name, effect) {
         const updatedControls = {
             ...this.state.gameControls
         };
@@ -229,14 +235,14 @@ class GameStart extends Component {
         let tempvalue;
         // let savings;
         // add check to see if action could take place
-        if(effect%1 == 0 && effect != 1 && effect != -1){
+        if (effect % 1 == 0 && effect != 1 && effect != -1) {
             tempvalue = updatedFormElement.value + effect;
             // savings = updatedFormSavings.value - effect;
-        }else{
+        } else {
             tempvalue = updatedFormElement.value + updatedFormElement.value * (effect);
             // savings = updatedFormSavings.value - updatedFormElement.value * (effect);
         }
-        if(this.checkActionValid()){
+        if (this.checkActionValid()) {
 
             updatedFormElement.value = roundNumber(tempvalue);
             // updatedFormSavings.value = savings;
@@ -245,13 +251,17 @@ class GameStart extends Component {
             this.setState({
                 gameControls: updatedControls
             });
-            if(checkLose(updatedControls)){
-                this.props.history.push({pathname: "/gameend",
-                    state:this.state});
+            if (checkLose(updatedControls)) {
+                this.props.history.push({
+                    pathname: "/gameend",
+                    state: this.state
+                });
             }
-        }else{
-            this.props.history.push({pathname: "/gameend",
-                                state:this.state});
+        } else {
+            this.props.history.push({
+                pathname: "/gameend",
+                state: this.state
+            });
         }
         updatedFormElement.value = roundNumber(tempvalue);
         // updatedFormSavings.value = savings;
@@ -261,34 +271,35 @@ class GameStart extends Component {
             gameControls: updatedControls
         })
     }
-    editGameActionControls(name, effect){
+
+    editGameActionControls(name, effect) {
 
         //get the index of the effect in products
         //index - 1
         let decision = this.state.scenarioData.effects.indexOf(effect) + 1;
         let optimalDecision = this.state.scenarioData.optimalDecision
         let multi = 0;
-        if(decision == optimalDecision){
+        if (decision == optimalDecision) {
             multi = 1;
         }
 
-        if(name == "savings"){
+        if (name == "savings") {
 
             this.setState({
-                savingsscore:this.state.savingsscore+multi,
-                savingscount:this.state.savingscount + 1
+                savingsscore: this.state.savingsscore + multi,
+                savingscount: this.state.savingscount + 1
             })
-        }else if(name=="bonds"){
+        } else if (name == "bonds") {
             this.setState({
-                bondsscore:this.state.bondsscore+multi,
-                bondscount:this.state.bondscount + 1
+                bondsscore: this.state.bondsscore + multi,
+                bondscount: this.state.bondscount + 1
             })
-        }else if(name=="stocks"){
+        } else if (name == "stocks") {
             this.setState({
-                investmentsscore:this.state.investmentsscore+multi,
-                investmentscount:this.state.investmentscount + 1
+                investmentsscore: this.state.investmentsscore + multi,
+                investmentscount: this.state.investmentscount + 1
             })
-        }else{
+        } else {
 
         }
         const updatedControls = {
@@ -304,14 +315,14 @@ class GameStart extends Component {
         let tempvalue;
         let savings;
         // add check to see if action could take place
-        if(effect%1 == 0 && effect != 1 && effect != -1){
+        if (effect % 1 == 0 && effect != 1 && effect != -1) {
             tempvalue = updatedFormElement.value + effect;
             savings = updatedFormSavings.value - effect;
-        }else{
+        } else {
             tempvalue = updatedFormElement.value + updatedFormElement.value * (effect);
             savings = updatedFormSavings.value - updatedFormElement.value * (effect);
         }
-        if(this.checkActionValid()){
+        if (this.checkActionValid()) {
 
             updatedFormElement.value = roundNumber(tempvalue);
             updatedFormSavings.value = roundNumber(savings);
@@ -319,10 +330,12 @@ class GameStart extends Component {
             updatedControls["savings"] = updatedFormSavings;
             this.setState({
                 gameControls: updatedControls
-            },this.postDecisionStage);
-        }else{
-            this.props.history.push({pathname: "/gameend",
-                state:this.state});
+            }, this.postDecisionStage);
+        } else {
+            this.props.history.push({
+                pathname: "/gameend",
+                state: this.state
+            });
         }
         updatedFormElement.value = tempvalue;
         // updatedFormSavings.value = savings;
@@ -344,12 +357,12 @@ class GameStart extends Component {
             case 1:
                 return (
                     <div style={pageComponentStyle}>
-                            <GameLanding
-                                nextStage={this.nextStage}
-                                episodeName = {this.state.scenarioData.episodeName}
-                                gameControls = {this.state.gameControls}
+                        <GameLanding
+                            nextStage={this.nextStage}
+                            episodeName={this.state.scenarioData.episodeName}
+                            gameControls={this.state.gameControls}
 
-                            ></GameLanding>
+                        ></GameLanding>
                     </div>);
             case 2:
                 return (
@@ -358,11 +371,11 @@ class GameStart extends Component {
                             <GameDescription
                                 nextStage={this.nextStage}
                                 // headlineStart = {this.state.scenarioData.headlineStart}
-                                descriptionStart = {this.state.scenarioData.descriptionStart}
-                                scproductName = {this.state.scenarioData.scenarioProduct}
-                                scproductEffect = {this.state.scenarioData.scenarioEffect}
-                                title = {this.state.scenarioData.headlineStart}
-                                gameControls = {this.state.gameControls}
+                                descriptionStart={this.state.scenarioData.descriptionStart}
+                                scproductName={this.state.scenarioData.scenarioProduct}
+                                scproductEffect={this.state.scenarioData.scenarioEffect}
+                                title={this.state.scenarioData.headlineStart}
+                                gameControls={this.state.gameControls}
                             ></GameDescription>
                         </header>
                     </div>);
@@ -370,12 +383,12 @@ class GameStart extends Component {
                 return (<div className="App">
                     <header className="App-header">
                         <GameDecision
-                            postDecisionStage = {this.postDecisionStage}
-                            handleChange = {this.handleChange}
-                            products = {this.state.scenarioData.products}
-                            effects = {this.state.scenarioData.effects}
-                            descriptionStart = {this.state.scenarioData.descriptionStart}
-                            gameControls = {this.state.gameControls}
+                            postDecisionStage={this.postDecisionStage}
+                            handleChange={this.handleChange}
+                            products={this.state.scenarioData.products}
+                            effects={this.state.scenarioData.effects}
+                            descriptionStart={this.state.scenarioData.descriptionStart}
+                            gameControls={this.state.gameControls}
                         ></GameDecision>
                     </header>
                 </div>);
@@ -385,10 +398,10 @@ class GameStart extends Component {
                         <GamePostDecision
                             selectedHeadline={this.state.selectedHeadline}
                             selectedDescription={this.state.selectedDescription}
-                            selectedProduct = {this.state.selectedProduct}
-                            selectedEffect ={this.state.selectedEffect}
+                            selectedProduct={this.state.selectedProduct}
+                            selectedEffect={this.state.selectedEffect}
                             nextStage={this.nextStage}
-                            gameControls = {this.state.gameControls}
+                            gameControls={this.state.gameControls}
                         ></GamePostDecision>
                     </header>
                 </div>);
@@ -396,11 +409,11 @@ class GameStart extends Component {
                 return (<div className="App">
                     <header className="App-header">
                         <GameSummary
-                            earnings = {this.state.earnings}
-                            spendings = {this.state.spendings}
+                            earnings={this.state.earnings}
+                            spendings={this.state.spendings}
                             //endStage
-                            postGameSummaryStage ={this.postGameSummaryStage}
-                            gameControls = {this.state.gameControls}
+                            postGameSummaryStage={this.postGameSummaryStage}
+                            gameControls={this.state.gameControls}
                         ></GameSummary>
                     </header>
                 </div>);

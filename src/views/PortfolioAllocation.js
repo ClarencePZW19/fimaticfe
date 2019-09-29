@@ -62,7 +62,7 @@ class PortfolioAllocation extends Component {
             earnings:earnings,
             spendings:userData["average_spendm"],
             gameControls:gameControls,
-            networth:userData["total_value"]
+            prevnetworth:userData["total_value"]
             });
     }
 

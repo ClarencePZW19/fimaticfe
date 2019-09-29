@@ -282,10 +282,7 @@ class ChooseAllocation extends Component {
                     : <Button style={doubleButtonStyleGreen} onClick={() => this.handleChange("insurance", 3)}> Travel
                         Coverage
                         $500</Button>
-
                 }
-
-
             </Row>
 
             <br/>
