@@ -13,19 +13,19 @@ class PortfolioSummary extends Component {
 
     constructor(props) {
         super(props);
-        this.state={
-            gameControls:{
-                stocks:{
-                    value:1000.0,
+        this.state = {
+            gameControls: {
+                stocks: {
+                    value: 1000.0,
                 },
-                bonds:{
-                    value:3500.0,
+                bonds: {
+                    value: 3500.0,
                 },
-                savings:{
-                    value:1000.0,
+                savings: {
+                    value: 1000.0,
                 },
-                insurance:{
-                    value:[true,true,true,false],
+                insurance: {
+                    value: [true, true, true, false],
                 }
             },
         }
@@ -33,10 +33,10 @@ class PortfolioSummary extends Component {
 
     render() {
         let gameControls = this.props.gameControls;
+        let insurance = gameControls.insurance.value;
         console.log(gameControls);
-       let insuranceStr = populateInsurance(gameControls.insurance.value);
+        let insuranceStr = populateInsurance(gameControls.insurance.value);
         console.log(insuranceStr);
-
 
         return (
             <Table
@@ -45,16 +45,16 @@ class PortfolioSummary extends Component {
                 <tbody>
                 <tr>
                     <td align="center">
-                        <div style = {iconImg}>
+                        <div style={iconImg}>
                             <img src={bonds} alt={""}></img>
                         </div>
                     </td>
                     <td align="center">
-                        <div style = {iconImg}>
+                        <div style={iconImg}>
                             <img src={stocks} alt={""}></img>
                         </div>
                     </td>
-                    
+
                 </tr>
                 <tr>
                     <td align="center">
@@ -63,24 +63,24 @@ class PortfolioSummary extends Component {
                         </p>
                     </td>
                     <td align="center">
-                      <p style={paratext}>
+                        <p style={paratext}>
                             Stocks : $ {gameControls.stocks.value}
                         </p>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">
-                        <div style = {iconImg}>
+                        <div style={iconImg}>
                             <img src={savings} alt={""}></img>
                         </div>
                     </td>
-                    
+
                     <td align="center">
-                        <div style = {iconImg}>
+                        <div style={iconImg}>
                             <img src={insurance} alt={""}></img>
                         </div>
                     </td>
-                    
+
                 </tr>
                 <tr>
                     <td align="center">
@@ -89,6 +89,7 @@ class PortfolioSummary extends Component {
                         </p>
                     </td>
                     <td align="center">
+                        {}
                         <p style={paratext}>
                             Insurance : {insuranceStr}
                         </p>
