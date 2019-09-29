@@ -30,7 +30,7 @@ class GamePostDecision extends Component {
                     </div>
                     <br/>
                     <Row>
-                        <h3>{selectedProduct} affected by: {selectedEffectstr}</h3>
+                        <h3>{selectedProduct.charAt(0).toUpperCase() + selectedProduct.slice(1)} affected by: {selectedEffectstr}</h3>
                     </Row>
                     <div style = {headline}>
                     <Button

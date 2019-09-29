@@ -45,26 +45,26 @@ class GameDecision extends Component {
                     <Row>
                         <Col>
                             <Button
-                                onClick={()=>this.handleChange(0)}>{products[0] + formatEffect(effects[0]) }</Button>
+                                onClick={()=>this.handleChange(0)}>{products[0].charAt(0).toUpperCase() + products[0].slice(1) + formatEffect(effects[0]) }</Button>
 
                         </Col>
                     </Row>
                     <Row>
                         <Col>
                             <Button
-                                onClick={()=>this.handleChange(1)}>{products[1] + formatEffect(effects[1])}</Button>
+                                onClick={()=>this.handleChange(1)}>{products[1].charAt(0).toUpperCase() + products[1].slice(1) + formatEffect(effects[1])}</Button>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
                             <Button
-                                onClick={()=>this.handleChange(2)}>{products[2] + formatEffect(effects[2])}</Button>
+                                onClick={()=>this.handleChange(2)}>{products[2].charAt(0).toUpperCase() + products[2].slice(1) + formatEffect(effects[2])}</Button>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
                             <Button
-                                onClick={()=>this.handleChange(3)}>{products[3] + formatEffect(effects[3])}</Button>
+                                onClick={()=>this.handleChange(3)}>{products[3].charAt(0).toUpperCase() + products[3].slice(1) + formatEffect(effects[3])}</Button>
                         </Col>
                     </Row>
                     <Row>

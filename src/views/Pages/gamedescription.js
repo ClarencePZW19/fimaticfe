@@ -41,7 +41,7 @@ class GameDescription extends Component {
                     {descriptionStart}
                 </div>
                 <div style={dividerText}>
-                    <h3>{scproductName} affected by: {scproductEffectStr}</h3>
+                    <h3>{String(scproductName.charAt(0).toUpperCase() + scproductName.slice(1))} affected by: {scproductEffectStr}</h3>
                     {/*{"These are the effects that happened on your investments"}*/}
                 </div>
                 <Button style={singlePillButtonStyle}
