@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {withRouter} from "react-router-dom";
 import ChooseAllocation from "./Components/ChooseAllocation";
-
+import Logo from "../assets/LIYF_brand.png"
+import {LIFYlogo} from "../css";
 class PortfolioAllocation extends Component {
 
     constructor(props) {
@@ -70,6 +71,8 @@ class PortfolioAllocation extends Component {
 
         return <div className="App">
             <header className="App-header">
+            <h5></h5>
+            <div><img src = {Logo} style = {LIFYlogo}></img></div>
                 <ChooseAllocation
                     history ={this.props.history}
                     gameControls = {this.state.gameControls}

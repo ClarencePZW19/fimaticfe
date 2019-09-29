@@ -5,10 +5,9 @@ import GameSummary from "./Pages/gamesummary";
 import GamePostDecision from "./Pages/gamepostdecision";
 import GameDecision from "./Pages/gamedecision";
 import {data} from "./Data";
-import {pageComponentStyle} from "../css";
+import {OverviewCompStyle} from "../css";
 import {calculateNetworth, checkLose, roundNumber} from "../_utils";
 import {Services} from "../_services";
-
 
 class GameStart extends Component {
     constructor(props) {
@@ -356,13 +355,13 @@ class GameStart extends Component {
         switch (stage) {
             case 1:
                 return (
-                    <div style={pageComponentStyle}>
-                        <GameLanding
-                            nextStage={this.nextStage}
-                            episodeName={this.state.scenarioData.episodeName}
-                            gameControls={this.state.gameControls}
-
-                        ></GameLanding>
+                    <div style={OverviewCompStyle}>
+                            <GameLanding
+                                nextStage={this.nextStage}
+                                episodeName = {this.state.scenarioData.episodeName}
+                                gameControls = {this.state.gameControls}
+                                
+                            ></GameLanding>
                     </div>);
             case 2:
                 return (

@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {Services} from "../_services";
 import {calculateNetworth} from "../_utils";
 import Button from "reactstrap/es/Button";
-import {Recommendationbuttonstyle, singlePillButtonStyle} from "../css";
-
+import {Recommendationbuttonstyle, singlePillButtonStyle, dividerText, LIFYlogo} from "../css";
+import Logo from "../assets/LIYF_brand.png"
 class ProductRecommendation extends Component {
 
     constructor(props) {
@@ -65,9 +65,10 @@ class ProductRecommendation extends Component {
         console.log(this.state.result[0].zero);
         return (<div className="App">
             <header className="App-header">
-                <h1>Thanks for playing the game!</h1>
-                <h2>Here are some personalized products just for you!</h2>
-                <h2> </h2>
+                <div><img src = {Logo} style = {LIFYlogo}></img></div>
+                <div style={dividerText}> <h1>Thanks for playing!</h1>
+                <h2>You did great! Here are some suggested services which we think you would love.</h2></div>
+                <h5> Click on here to find out more! </h5>
                 <Button style={Recommendationbuttonstyle}
                         href={this.state.result[1].zero}>
                     {this.state.result[0].zero}
