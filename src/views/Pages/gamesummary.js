@@ -5,8 +5,9 @@ import Row from "reactstrap/es/Row";
 import ChooseAllocation from "../Components/ChooseAllocation";
 import PortfolioSummary from "../Components/PortfolioSummary";
 import ProfilePicture from "../Components/ProfilePicture";
-import {singleButtonStyle, textArea, ProfileAlignmentStyle} from "../../css";
+import {singleButtonStyle, textArea, ProfileAlignmentStyle, LIFYlogo} from "../../css";
 import Col from "reactstrap/es/Col";
+import Logo from "../../assets/LIYF_brand.png"
 
 class GameSummary extends Component {
     postGameSummaryStage = this.props.postGameSummaryStage;
@@ -30,6 +31,7 @@ class GameSummary extends Component {
                     </Col>
                 </Container>
                 <Button style={singleButtonStyle} onClick={this.postGameSummaryStage}>Proceed to next month</Button>
+                <div><img src = {Logo} style = {LIFYlogo}></img></div>
             </div>
         )
     }

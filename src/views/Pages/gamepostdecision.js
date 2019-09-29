@@ -3,8 +3,8 @@ import {Button} from "reactstrap";
 import Container from "reactstrap/es/Container";
 import Row from "reactstrap/es/Row";
 import PortfolioSummary from "../Components/PortfolioSummary";
-import {dividerText, headline, OverviewStyle} from "../../css";
-
+import {dividerText, headline, LIFYlogo} from "../../css";
+import Logo from "../../assets/LIYF_brand.png"
 class GamePostDecision extends Component {
     saveAndContinue = () => this.props.nextStage();
     render(){
@@ -30,12 +30,13 @@ class GamePostDecision extends Component {
                     </div>
                     <br/>
                     <Row>
-                        Your {selectedProduct} has been affected by: {selectedEffectstr}
+                        <h3>{selectedProduct} affected by: {selectedEffectstr}</h3>
                     </Row>
                     <div style = {headline}>
                     <Button
                         onClick={this.saveAndContinue}> Proceed </Button></div>
                 </Container>
+                <div><img src = {Logo} style = {LIFYlogo}></img></div>
             </div>
         )
     }

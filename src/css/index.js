@@ -13,7 +13,8 @@ export const singleButtonStyle = {
     padding: "10px",
     border: "none",
     borderRadius: "5px",
-    marginBottom: "10px"
+    marginBottom: "10px",
+    verticalAlign: "center",
 };
 
 export const Recommendationbuttonstyle = {
@@ -52,7 +53,7 @@ export const imgsinglePillButtonStyle = {
     borderRadius: "16px",
     // position: "fixed",
     // bottom: "0",
-    margin: "70vh 0px 16px 0px",
+    margin: "0vh 0px 16px 0px",
 
 };
 
@@ -61,7 +62,9 @@ export const componentStyle = {
 };
 
 export const overviewTitle = {
-    marginTop:"20px"
+    margin: "1vh 1vh 1vh 1vh",
+    fontSize: "14px",
+    color: '#FFFFFF',
 }
 export const doubleButtonStyle = {
     color: '#FFFFFF',
@@ -98,14 +101,6 @@ export const purchasebuttonstylegreen = {
     borderRadius: "5px"
 }
 
-export const profileImg = {
-    borderRadius: "10%",
-    height: "100%",
-    width: "100%,",
-    maxHeight: "60px",
-    alignItems: 'left',
-};
-
 export const backgroundImg = {
     minHeight: "100vh",
     height: "100%",
@@ -124,6 +119,13 @@ export const iconImg = {
     maxWidth: "50px",
     verticalAlign: "center",
     horizontalAlign: "center",
+};
+
+export const AnimatonStyle = {
+    verticalAlign: "center",
+    horizontalAlign: "center",
+    width: "80%",
+    borderRadius: "5px",
 };
 
 export const ProfileImg = {
@@ -161,7 +163,7 @@ export const OverviewStyle = {
     fontSize: "calc(15px + 2vmin)",
     borderRadius: "5px",
     verticalAlign: 'top',
-    width:"60%"
+    width:"90%"
 };
 
 
@@ -180,7 +182,7 @@ export const paratext = {
 
 export const simplediv = {
     color: "#FFFFFF",
-    margin: "0px 0px 20px 0px",
+    margin: "0px 5px 20px 5px",
 };
 
 export const dividerText = {
@@ -203,6 +205,13 @@ export const navBar = {
     justifyContent: 'center',
 };
 
+export const LIFYlogo = {
+    position: "relative",
+    bottom: "0",
+    width: "30%",
+    verticalAlign: "center",
+};
+
 export const pageComponentStyle = {
     backgroundColor: " #282c34",
     minHeight: "100vh",
@@ -215,4 +224,14 @@ export const pageComponentStyle = {
     fontSize: "calc(10px + 2vmin)",
     margin: "0px 5px 0px 5px",
     color: "white"
+};
+
+export const OverviewCompStyle = {
+    backgroundColor: " #282c34",
+    minHeight: "100vh",
+    display: "flex",
+    //alignItems: 'center',
+    textAlign: 'center',
+    // justifyContent: 'center',
+    fontSize: "calc(10px + 2vmin)",
 };

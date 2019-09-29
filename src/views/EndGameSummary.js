@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import PortfolioSummary from "./Components/PortfolioSummary";
 import {roundToZero} from "../_utils";
 import Button from "reactstrap/es/Button";
-import {singlePillButtonStyle} from "../css";
-
+import {singlePillButtonStyle, LIFYlogo} from "../css";
+import Logo from "../assets/LIYF_brand.png"
 
 class EndGameSummary extends Component {
     constructor(props) {
@@ -41,6 +41,7 @@ class EndGameSummary extends Component {
         return (
             <div className="App">
                 <header className="App-header">
+                    <div><img src = {Logo} style = {LIFYlogo}></img></div>
                     <h1>GREAT GAME!</h1>
                     <PortfolioSummary gameControls = {this.state.gameControls}/>
                     <h3>Score for Stocks: {this.state.ipoints} %</h3>

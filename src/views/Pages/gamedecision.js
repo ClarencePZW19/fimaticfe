@@ -3,9 +3,9 @@ import {Button, Card, CardHeader, CardText, CardBody} from "reactstrap";
 import Container from "reactstrap/es/Container";
 import Row from "reactstrap/es/Row";
 import Col from "reactstrap/es/Col";
-import {pageComponentStyle, dividerText, titleStyle} from "../../css";
+import {pageComponentStyle, dividerText, titleStyle, LIFYlogo} from "../../css";
 import PortfolioSummary from "../Components/PortfolioSummary";
-
+import Logo from "../../assets/LIYF_brand.png"
 
 class GameDecision extends Component {
 
@@ -74,6 +74,8 @@ class GameDecision extends Component {
                         </Col>
                     </Row>
                 </Container>
+                <h4></h4>
+                <div><img src = {Logo} style = {LIFYlogo}></img></div>
             </div>
         )
     }

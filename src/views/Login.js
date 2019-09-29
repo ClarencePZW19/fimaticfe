@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import GameLanding from "./Pages/gamelanding";
 import LoginForm from "./Components/LoginForm";
-import DbsLogo from "../assets/2_pshift_logo.png"
+import DbsLogo from "../assets/LIYF_Title.png"
 import {Services} from "../_services"
 class Login extends Component{
-
     constructor(props) {
         super(props);
         this.submitForm = this.submitForm.bind(this);
@@ -26,8 +25,8 @@ class Login extends Component{
             password: "qwerty123",
             bonds_value: 0,
             stocks_value: 0,
-            savings_value: 6000,
-            total_value: 6000,
+            savings_value: 10000,
+            total_value: 10000,
             average_spendm: 700,
             average_earnm: 800,
             average_savingsm: 100,

@@ -7,8 +7,9 @@ import CardText from "reactstrap/es/CardText";
 import Container from "reactstrap/es/Container";
 import Col from "reactstrap/es/Col";
 import Row from "reactstrap/es/Row";
-import {singlePillButtonStyle, titleStyle, simplediv, dividerText} from "../../css";
+import {singlePillButtonStyle, titleStyle, simplediv, dividerText, LIFYlogo} from "../../css";
 import PortfolioSummary from "../Components/PortfolioSummary";
+import Logo from "../../assets/LIYF_brand.png"
 
 class GameDescription extends Component {
 
@@ -40,12 +41,13 @@ class GameDescription extends Component {
                     {descriptionStart}
                 </div>
                 <div style={dividerText}>
-                    Your {scproductName} has been affected by: {scproductEffectStr}
+                    <h3>{scproductName} affected by: {scproductEffectStr}</h3>
                     {/*{"These are the effects that happened on your investments"}*/}
                 </div>
                 <Button style={singlePillButtonStyle}
                         onClick={this.saveAndContinue}>Proceed</Button>
                 <h1></h1>
+                <div><img src = {Logo} style = {LIFYlogo}></img></div>
             </div>
         )
     }
