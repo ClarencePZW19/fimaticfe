@@ -145,7 +145,7 @@ class ChooseAllocation extends Component {
         } else {
             tempvalue = true;
             if (updatedFormElement.value[effect]) {
-
+                console.log(updatedFormElement.value[effect])
             } else {
                 let costs = 0;
                 if (effect == 0) {
@@ -218,14 +218,14 @@ class ChooseAllocation extends Component {
             </Row>
                 <h5> Choose which insurance you want to buy : </h5>
             <Row>
-                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 2)}> Housing Coverage
-                    $1500</Button>
-                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 3)}> Travel Coverage
-                     $500</Button>
-                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 1)}> Critical Illness
-                    $2000</Button>
                 <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 0)}> Basic Health
                     $1000</Button>
+                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 2)}> Housing Coverage
+                    $1500</Button>
+                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 1)}> Critical Illness
+                    $2000</Button>
+                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 3)}> Travel Coverage
+                     $500</Button>
             </Row>
 
             <br/>
