@@ -74,6 +74,17 @@ export const doubleButtonStyle = {
     verticalAlign: "top",
     borderRadius: "5px"
 }
+export const doubleButtonStyleGreen = {
+    color: '#FFFFFF',
+    backgroundColor: "#32a852",
+    fontSize: "10px",
+    height: "80px",
+    width: "25%",
+    border: "2px solid rgb(40, 44, 52)",
+    fontWeight: "bold",
+    verticalAlign: "top",
+    borderRadius: "5px"
+}
 export const purchasebuttonstylered = {
     color: '#FFFFFF',
     backgroundColor: "rgb(237, 28, 36)",

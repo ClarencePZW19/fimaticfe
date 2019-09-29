@@ -1,10 +1,16 @@
 import React, {Component} from 'react';
 import Button from "reactstrap/es/Button";
-import Container from "reactstrap/es/Container";
 import Row from "reactstrap/es/Row";
 import Alert from "reactstrap/es/Alert";
-import {doubleButtonStyle, pageComponentStyle, singlePillButtonStyle, allocationStyle, purchasebuttonstylered, purchasebuttonstylegreen} from "../../css";
-import {populateInsurance} from "../../_utils";
+import {
+    doubleButtonStyle,
+    pageComponentStyle,
+    singlePillButtonStyle,
+    allocationStyle,
+    purchasebuttonstylered,
+    purchasebuttonstylegreen,
+    doubleButtonStyleGreen
+} from "../../css";
 import PortfolioSummary from "./PortfolioSummary";
 
 
@@ -18,8 +24,13 @@ class ChooseAllocation extends Component {
             error: false,
 
             earnings: 800,
-            networth:0,
+            networth: 0,
             spendings: 300,
+            basic_color: false,
+            critical_color: false,
+            housing_color: false,
+            travel_color: false,
+
             gameControls: {
                 stocks: {
                     value: 0,
@@ -36,31 +47,23 @@ class ChooseAllocation extends Component {
             },
         };
     }
+
     componentDidMount() {
         console.log(this.props.gameControls);
         this.setState({
-            gameControls:this.props.gameControls,
-            networth:this.props.networth
+            gameControls: this.props.gameControls,
+            networth: this.props.networth
         })
     }
+
     componentDidUpdate(prevProps) {
-        if(this.props.gameControls !== prevProps.gameControls){
+        if (this.props.gameControls !== prevProps.gameControls) {
             this.setState({
-                gameControls:this.props.gameControls,
-                networth:this.props.networth
+                gameControls: this.props.gameControls,
+                networth: this.props.networth
             })
         }
     }
-
-    // shouldComponentUpdate(nextProps, nextState, nextContext) {
-    //     if(nextState!= this.state){
-    //         console.log(nextState);
-    //         console.log(this.state);
-    //     }
-    //     // this.setState({
-    //     //     gameControls:nextProps.gameControls,
-    //     // })
-    // }
 
     checkActionValid(updatedGameControls) {
         let savings = this.state.gameControls.savings.value;
@@ -90,7 +93,7 @@ class ChooseAllocation extends Component {
     }
 
     handleChange = (name, multi) => {
-        console.log(name,multi);
+        console.log(name, multi);
         let effect;
         if (name != "insurance") {
             effect = 0.05 * multi * this.state.networth;
@@ -145,7 +148,33 @@ class ChooseAllocation extends Component {
         } else {
             tempvalue = true;
             if (updatedFormElement.value[effect]) {
-                console.log(updatedFormElement.value[effect])
+                let costs = 0;
+                if (effect == 0) {
+                    costs = 1000
+                } else if (effect == 1) {
+                    costs = 2000
+                } else if (effect == 2) {
+                    costs = 1500
+                } else if (effect == 3) {
+                    costs = 500
+                } else {
+
+                }
+                //reduction of costs
+                savings = updatedFormSavings.value + costs;
+                updatedFormSavings.value = savings;
+                updatedControls["savings"] = updatedFormSavings;
+
+                //update insurance array
+                updatedFormElement.value[effect] = !updatedFormElement.value[effect];
+                updatedControls[name] = updatedFormElement;
+                console.log(updatedControls);
+                if (this.checkActionValid(updatedControls)) {
+                    this.setState({
+                        error: false,
+                        gameControls: updatedControls
+                    });
+                }
             } else {
                 let costs = 0;
                 if (effect == 0) {
@@ -190,7 +219,7 @@ class ChooseAllocation extends Component {
         // let {earnings, spendings} = this.state;
         // // let savings = this.state.gameControls.savings.value;
         // let values = Object.values(this.state.gameControls);
-        console.log(this.state.gameControls);
+        console.log(this.state.gameControls.insurance.value[0]);
         let error = this.state.error;
         return <div style={pageComponentStyle}>
             <h1 style={allocationStyle}>Your Financial Profile</h1>
@@ -201,31 +230,62 @@ class ChooseAllocation extends Component {
             <PortfolioSummary gameControls={this.state.gameControls}></PortfolioSummary>
             <br/>
 
-                <h5> Increase or Decrease your Bond holdings : </h5>
+            <h5> Increase or Decrease your Bond holdings : </h5>
             <Row>
                 <Button style={purchasebuttonstylegreen} onClick={() => this.handleChange("bonds", 1)}>Increase Bonds by
                     5%</Button>
                 <Button style={purchasebuttonstylered} onClick={() => this.handleChange("bonds", -1)}>Decrease Bonds by
                     5%</Button>
             </Row>
-                <h5> Increase or Decrease your Stock holdings : </h5>
+            <h5> Increase or Decrease your Stock holdings : </h5>
 
             <Row>
-                <Button style={purchasebuttonstylegreen} onClick={() => this.handleChange("stocks", 1)}>Increase Stocks by
+                <Button style={purchasebuttonstylegreen} onClick={() => this.handleChange("stocks", 1)}>Increase Stocks
+                    by
                     5%</Button>
-                <Button style={purchasebuttonstylered} onClick={() => this.handleChange("stocks", -1)}>Decrease Stocks by
+                <Button style={purchasebuttonstylered} onClick={() => this.handleChange("stocks", -1)}>Decrease Stocks
+                    by
                     5%</Button>
             </Row>
-                <h5> Choose which insurance you want to buy : </h5>
+            <h5> Choose which insurance you want to buy : </h5>
             <Row>
-                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 0)}> Basic Health
-                    $1000</Button>
-                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 2)}> Housing Coverage
-                    $1500</Button>
-                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 1)}> Critical Illness
-                    $2000</Button>
-                <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 3)}> Travel Coverage
-                     $500</Button>
+                {!this.state.gameControls.insurance.value[0]
+                    ? <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 0)}> Basic Health
+                        $1000</Button>
+                    : <Button style={doubleButtonStyleGreen} onClick={() => this.handleChange("insurance", 0)}> Basic
+                        Health
+                        $1000</Button>
+
+                }
+                {!this.state.gameControls.insurance.value[1]
+                    ? <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 1)}> Critical
+                        Illness
+                        $2000</Button>
+                    : <Button style={doubleButtonStyleGreen} onClick={() => this.handleChange("insurance", 1)}> Critical
+                        Illness
+                        $2000</Button>
+
+                }
+                {!this.state.gameControls.insurance.value[2]
+                    ? <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 2)}> Housing
+                        Coverage
+                        $1500</Button>
+                    : <Button style={doubleButtonStyleGreen} onClick={() => this.handleChange("insurance", 2)}> Housing
+                        Coverage
+                        $1500</Button>
+
+                }
+                {!this.state.gameControls.insurance.value[3]
+                    ?
+                    <Button style={doubleButtonStyle} onClick={() => this.handleChange("insurance", 3)}> Travel Coverage
+                        $500</Button>
+                    : <Button style={doubleButtonStyleGreen} onClick={() => this.handleChange("insurance", 3)}> Travel
+                        Coverage
+                        $500</Button>
+
+                }
+
+
             </Row>
 
             <br/>
