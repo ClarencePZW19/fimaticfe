@@ -8,11 +8,21 @@ import ProfilePicture from "../Components/ProfilePicture";
 import {singleButtonStyle, textArea, ProfileAlignmentStyle, LIFYlogo} from "../../css";
 import Col from "reactstrap/es/Col";
 import Logo from "../../assets/LIYF_brand.png"
+import {calculateNetworth} from "../../_utils";
 
 class GameSummary extends Component {
     postGameSummaryStage = this.props.postGameSummaryStage;
     render() {
-        console.log(this.props.gameControls);
+
+        //calculate the networth
+        let networth_new =  calculateNetworth(this.props.gameControls);
+        console.log(networth_new);
+        //get previous worth
+        let networth_prev = this.props.gameControls.tempnetworth.value;
+        console.log(networth_prev);
+        //calculate
+        let percChange = (((networth_new - networth_prev) / networth_prev)*100).toFixed(2);
+
         return (
             <div>
                 <Container>
@@ -25,7 +35,8 @@ class GameSummary extends Component {
                             {/*<p>Monthly Spending: {spendings}</p>*/}
                         </div>
                     <PortfolioSummary gameControls={this.props.gameControls}/>
-                    {/*<ChooseAllocation></ChooseAllocation>*/}
+                   <h2>Your networth change: {percChange} %</h2>
+
                     </Col>
                 </Container>
                 <Button style={singleButtonStyle} onClick={this.postGameSummaryStage}>Proceed to next month</Button>

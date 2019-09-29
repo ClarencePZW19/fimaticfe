@@ -49,7 +49,6 @@ class ChooseAllocation extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.gameControls);
         this.setState({
             gameControls: this.props.gameControls,
             networth: this.props.networth
@@ -70,7 +69,6 @@ class ChooseAllocation extends Component {
 
         //check if the total savings is less than fixedSavings
         //check if it is insurance
-        console.log(updatedGameControls);
         let values = Object.values(updatedGameControls);
         let total = 0;
         let lessThanZeroCheck = false;
@@ -93,23 +91,18 @@ class ChooseAllocation extends Component {
     }
 
     handleChange = (name, multi) => {
-        console.log(name, multi);
         let effect;
         if (name != "insurance") {
+
             effect = 0.05 * multi * this.state.networth;
         } else {
             //choice of insurance to buy
-            console.log(multi);
             effect = multi;
-            console.log(effect);
         }
-        console.log(effect);
         this.editGameControls(name, effect);
     };
 
     editGameControls(name, effect) {
-        console.log(name);
-        console.log(effect);
         const updatedControls = {
             ...this.state.gameControls
         };
@@ -123,6 +116,7 @@ class ChooseAllocation extends Component {
         let savings;
         // add check to see if action could take place
         if (name !== "insurance") {
+
             if (effect % 1 === 0 && effect != 1 && effect != -1) {
 
                 tempvalue = updatedFormElement.value + effect;
@@ -137,7 +131,6 @@ class ChooseAllocation extends Component {
             updatedFormSavings.value = savings;
             updatedControls["savings"] = updatedFormSavings;
 
-            console.log(updatedControls);
             if (this.checkActionValid(updatedControls)) {
                 this.setState({
                     error: false,
@@ -168,7 +161,6 @@ class ChooseAllocation extends Component {
                 //update insurance array
                 updatedFormElement.value[effect] = !updatedFormElement.value[effect];
                 updatedControls[name] = updatedFormElement;
-                console.log(updatedControls);
                 if (this.checkActionValid(updatedControls)) {
                     this.setState({
                         error: false,
@@ -196,7 +188,6 @@ class ChooseAllocation extends Component {
                 //update insurance array
                 updatedFormElement.value[effect] = tempvalue;
                 updatedControls[name] = updatedFormElement;
-                console.log(updatedControls);
                 if (this.checkActionValid(updatedControls)) {
                     this.setState({
                         error: false,
@@ -219,7 +210,6 @@ class ChooseAllocation extends Component {
         // let {earnings, spendings} = this.state;
         // // let savings = this.state.gameControls.savings.value;
         // let values = Object.values(this.state.gameControls);
-        console.log(this.state.gameControls.insurance.value[0]);
         let error = this.state.error;
         return <div style={pageComponentStyle}>
             <h1 style={allocationStyle}>Your Financial Profile</h1>

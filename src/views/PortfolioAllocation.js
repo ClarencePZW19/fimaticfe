@@ -54,6 +54,9 @@ class PortfolioAllocation extends Component {
                 },
                 networth: {
                     value:userData["total_value"]
+                },
+                tempnetworth:{
+                    value:userData["total_value"]
                 }
             
             
@@ -63,7 +66,7 @@ class PortfolioAllocation extends Component {
             earnings:earnings,
             spendings:userData["average_spendm"],
             gameControls:gameControls,
-            prevnetworth:userData["total_value"]
+            networth:userData["total_value"]
             });
     }
 

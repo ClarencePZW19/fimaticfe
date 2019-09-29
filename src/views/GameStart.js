@@ -39,6 +39,9 @@ class GameStart extends Component {
                 },
                 networth:{
                     value:0
+                },
+                tempnetworth:{
+                    value:0
                 }
 
             },
@@ -59,7 +62,6 @@ class GameStart extends Component {
     checkActionValid() {
         let savings = this.state.gameControls.savings.value;
         if (savings <= 0) {
-            console.log("hello");
             return false;
         } else {
             return true;
@@ -82,7 +84,6 @@ class GameStart extends Component {
         const {stage} = this.state;
         //calculate odds for happening
         let val = Math.random();
-        console.log(val);
 
         let name;
         let effect;
@@ -102,9 +103,8 @@ class GameStart extends Component {
             desc = this.state.scenarioData.descriptionTwo;
         }
         //
-        console.log(name);
-        console.log(effect);
         this.editGameControls(name, effect);
+        //call method to edit recalculate the networth
         this.setState({
             selectedHeadline: headline,
             selectedDescription: desc,
@@ -126,8 +126,22 @@ class GameStart extends Component {
 
         //change stage number to 1
         this.updateComponent();
-        this.setState({
 
+        const updatedControls = {
+            ...this.state.gameControls
+        };
+        console.log(updatedControls);
+        const updatedFormElement = {
+            ...updatedControls.tempnetworth
+        };
+        console.log("here");
+
+        updatedFormElement.value = roundNumber(calculateNetworth(this.state.gameControls));
+        // updatedFormSavings.value = savings;
+        updatedControls.tempnetworth = updatedFormElement;
+        console.log(updatedControls)
+        this.setState({
+            gameControls : updatedControls,
             stage: 2,
             count: count
         })
@@ -139,9 +153,8 @@ class GameStart extends Component {
         // import the index
 
         let gameControls = this.props.location.state.toSend;
-        console.log(gameControls);
         let userData = JSON.parse(localStorage.getItem('user'));
-
+        console.log(gameControls);
         let networth = calculateNetworth(gameControls);
 
         let scObject = {
@@ -153,7 +166,6 @@ class GameStart extends Component {
             insurance: gameControls.insurance.value,
             networth: networth,
         };
-        console.log(scObject);
         let scenarioData;
         Services.getScenario(scObject).then(result => {
 
@@ -172,9 +184,7 @@ class GameStart extends Component {
 
     updateComponent() {
         let gameControls = this.state.gameControls;
-
         let userData = JSON.parse(localStorage.getItem('user'));
-
         let networth = calculateNetworth(gameControls);
         let scObject = {
             savings: gameControls.savings.value,
@@ -185,7 +195,6 @@ class GameStart extends Component {
             insurance: gameControls.insurance.value,
             networth: networth,
         };
-        console.log(scObject);
         let scenarioData;
         Services.getScenario(scObject).then(result => {
 
@@ -205,9 +214,7 @@ class GameStart extends Component {
     handleChange = (e) => {
         let name;
         let effect;
-        console.log(e);
         if (e != undefined && e != 4) {
-            console.log(e);
             name = this.state.scenarioData.products[e];
             effect = this.state.scenarioData.effects[e];
             this.editGameActionControls(name, effect);
@@ -227,10 +234,6 @@ class GameStart extends Component {
         const updatedFormElement = {
             ...updatedControls[name]
         };
-        // const updatedFormSavings = {
-        //     ...updatedControls["savings"]
-        // };
-        // console.log(updatedFormSavings)
         let tempvalue;
         // let savings;
         // add check to see if action could take place
