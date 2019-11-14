@@ -3,7 +3,7 @@
 // export const API_BASE_URL = "http://localhost:8080";
 
 export const API_BASE_URL ="https://fimatic-be.herokuapp.com";
-export const FIMATIC_ENGINE ="http://dymanic-env.mbcatefpbp.us-east-2.elasticbeanstalk.com";
+export const FIMATIC_ENGINE ="http://fimatic-engine-env.pmuvzadmpz.us-east-2.elasticbeanstalk.com";
 
 export const ACCESS_TOKEN = 'accessToken';
 
